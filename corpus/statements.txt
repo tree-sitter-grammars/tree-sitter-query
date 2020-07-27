@@ -1,0 +1,84 @@
+===========
+Named nodes
+===========
+
+(program)
+
+---
+
+(program
+  (named_node
+    name: (identifier)))
+
+===============
+Anonymous nodes
+===============
+
+(program "it")
+
+---
+
+(program
+  (anonymous_node))
+
+===============
+Field names
+===============
+
+(program
+  name: (identifier))
+
+---
+
+(program
+  (field_definition
+    name: (identifier)
+    (named_node)))
+
+===============
+Quantifiers (+)
+===============
+
+(program
+  (identifier)+)
+
+---
+
+(program
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      quantifier: (quantitier)))
+
+===============
+Quantifiers (?)
+===============
+
+(program
+  (identifier)?)
+
+---
+
+(program
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      quantifier: (quantitier)))
+
+===============
+Quantifiers (*)
+===============
+
+(program
+  (identifier)*)
+
+---
+
+(program
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      quantifier: (quantitier)))

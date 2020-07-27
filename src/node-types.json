@@ -1,0 +1,284 @@
+[
+  {
+    "type": "anonymous_node",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture",
+            "named": true
+          }
+        ]
+      },
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "field_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "named_node",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grouping",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture",
+            "named": true
+          }
+        ]
+      },
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "named_node",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "named_node",
+    "named": true,
+    "fields": {
+      "capture": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "capture",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "field_definition",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "named_node",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "capture",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "predicate",
+    "named": true,
+    "fields": {
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameters",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "program",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "named_node",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quantifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "capture",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  }
+]
