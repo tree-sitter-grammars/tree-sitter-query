@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-scheme",
+  "name": "tree-sitter-query",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

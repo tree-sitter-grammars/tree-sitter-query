@@ -1466,7 +1466,7 @@ extern "C" {
 #define extern __declspec(dllexport)
 #endif
 
-extern const TSLanguage *tree_sitter_scheme(void) {
+extern const TSLanguage *tree_sitter_query(void) {
   static TSLanguage language = {
     .version = LANGUAGE_VERSION,
     .symbol_count = SYMBOL_COUNT,
