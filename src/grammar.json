@@ -26,6 +26,10 @@
         {
           "type": "SYMBOL",
           "name": "predicate"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "list"
         }
       ]
     },
@@ -39,6 +43,19 @@
         {
           "type": "STRING",
           "value": ":"
+        }
+      ]
+    },
+    "predicate_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "?"
+        },
+        {
+          "type": "STRING",
+          "value": "!"
         }
       ]
     },
@@ -80,9 +97,26 @@
       "type": "PATTERN",
       "value": "[a-z_]+"
     },
-    "capture": {
+    "capture_identifier": {
       "type": "PATTERN",
-      "value": "@[a-zA-Z0-9.\\-_\\$&*]+"
+      "value": "[a-zA-Z0-9.\\-_\\$&*]+"
+    },
+    "capture": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "capture_identifier"
+          }
+        }
+      ]
     },
     "string": {
       "type": "PATTERN",
@@ -104,6 +138,57 @@
         ]
       }
     },
+    "list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_definition"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "quantifier",
+              "content": {
+                "type": "SYMBOL",
+                "name": "quantifier"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "capture"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "grouping": {
       "type": "SEQ",
       "members": [
@@ -112,7 +197,7 @@
           "value": "("
         },
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
             "name": "_definition"
@@ -142,8 +227,7 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "capture",
+              "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
                 "name": "capture"
@@ -183,8 +267,7 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "capture",
+              "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
                 "name": "capture"
@@ -252,8 +335,7 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "capture",
+              "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
                 "name": "capture"
@@ -274,8 +356,25 @@
           "value": "("
         },
         {
-          "type": "PATTERN",
-          "value": "#[a-zA-Z?_\\-.\\$]+"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "FIELD",
+                "name": "type",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "predicate_type"
+                }
+              }
+            ]
+          }
         },
         {
           "type": "FIELD",

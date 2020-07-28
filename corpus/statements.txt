@@ -14,11 +14,14 @@ Named nodes
 Anonymous nodes
 ===============
 
-(program "it")
+(program)
+"it"
 
 ---
 
 (program
+  (named_node
+    name: (identifier))
   (anonymous_node))
 
 ===============
@@ -31,9 +34,12 @@ Field names
 ---
 
 (program
-  (field_definition
+  (named_node
     name: (identifier)
-    (named_node)))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))))
 
 ===============
 Quantifiers (+)
@@ -49,7 +55,7 @@ Quantifiers (+)
     name: (identifier)
     (named_node
       name: (identifier)
-      quantifier: (quantitier)))
+      quantifier: (quantifier))))
 
 ===============
 Quantifiers (?)
@@ -65,7 +71,7 @@ Quantifiers (?)
     name: (identifier)
     (named_node
       name: (identifier)
-      quantifier: (quantitier)))
+      quantifier: (quantifier))))
 
 ===============
 Quantifiers (*)
@@ -81,4 +87,80 @@ Quantifiers (*)
     name: (identifier)
     (named_node
       name: (identifier)
-      quantifier: (quantitier)))
+      quantifier: (quantifier))))
+
+======
+Groups
+======
+
+(
+  (comment)
+  (function_declaration)
+)
+
+---
+
+(program
+  (grouping
+    (named_node name: (identifier))
+    (named_node name: (identifier))))
+
+========
+Captures
+========
+
+(class_declaration
+  body: (class_body) @class.body @test) @blorg
+
+---
+
+(program
+  (named_node name: (identifier)
+    (field_definition name: (identifier)
+      (named_node
+        name: (identifier)
+        (capture name: (capture_identifier))
+        (capture name: (capture_identifier))))
+    (capture name: (capture_identifier))))
+
+=====
+Lists
+=====
+
+[
+  "?"
+  "+"
+  "-"
+] @ops
+
+---
+
+(program
+  (list
+    (anonymous_node)
+    (anonymous_node)
+    (anonymous_node)
+    (capture name: (capture_identifier))))
+
+==========
+Predicates
+==========
+
+(
+  (identifier) @v
+  (eq? @v "test")
+)
+
+---
+
+(program
+  (grouping
+    (named_node
+      name: (identifier)
+      (capture name: (capture_identifier)))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture name: (capture_identifier))
+        (string)))))

@@ -3,22 +3,38 @@
     "type": "anonymous_node",
     "named": true,
     "fields": {
-      "capture": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "capture",
-            "named": true
-          }
-        ]
-      },
       "quantifier": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "capture",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "capture",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "capture_identifier",
             "named": true
           }
         ]
@@ -57,6 +73,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "named_node",
           "named": true
         },
@@ -71,16 +91,6 @@
     "type": "grouping",
     "named": true,
     "fields": {
-      "capture": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "capture",
-            "named": true
-          }
-        ]
-      },
       "quantifier": {
         "multiple": false,
         "required": false,
@@ -94,14 +104,68 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "anonymous_node",
           "named": true
         },
         {
+          "type": "capture",
+          "named": true
+        },
+        {
           "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "named_node",
+          "named": true
+        },
+        {
+          "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "capture",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -119,16 +183,6 @@
     "type": "named_node",
     "named": true,
     "fields": {
-      "capture": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "capture",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -159,11 +213,19 @@
           "named": true
         },
         {
+          "type": "capture",
+          "named": true
+        },
+        {
           "type": "field_definition",
           "named": true
         },
         {
           "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -200,6 +262,16 @@
     "type": "predicate",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "parameters": {
         "multiple": false,
         "required": true,
@@ -209,8 +281,23 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "predicate_type",
+            "named": true
+          }
+        ]
       }
     }
+  },
+  {
+    "type": "predicate_type",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "program",
@@ -226,6 +313,10 @@
         },
         {
           "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -248,6 +339,10 @@
     "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "!",
+    "named": false
   },
   {
     "type": "(",
@@ -274,7 +369,19 @@
     "named": false
   },
   {
-    "type": "capture",
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "capture_identifier",
     "named": true
   },
   {
