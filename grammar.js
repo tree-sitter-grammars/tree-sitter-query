@@ -1,5 +1,5 @@
 module.exports = grammar({
-  name: "scheme",
+  name: "query",
   rules: {
     program: $ => repeat($._definition),
     _definition: $ =>
