@@ -119,9 +119,9 @@ Captures
     (field_definition name: (identifier)
       (named_node
         name: (identifier)
-        (capture name: (capture_identifier))
-        (capture name: (capture_identifier))))
-    (capture name: (capture_identifier))))
+        (capture name: (identifier))
+        (capture name: (identifier))))
+    (capture name: (identifier))))
 
 =====
 Lists
@@ -140,7 +140,7 @@ Lists
     (anonymous_node)
     (anonymous_node)
     (anonymous_node)
-    (capture name: (capture_identifier))))
+    (capture name: (identifier))))
 
 ==========
 Predicates
@@ -157,10 +157,10 @@ Predicates
   (grouping
     (named_node
       name: (identifier)
-      (capture name: (capture_identifier)))
+      (capture name: (identifier)))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (capture_identifier))
+        (capture name: (identifier))
         (string)))))

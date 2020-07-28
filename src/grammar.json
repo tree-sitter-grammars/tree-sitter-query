@@ -30,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
         }
       ]
     },
@@ -95,11 +99,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-z_]+"
-    },
-    "capture_identifier": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z0-9.\\-_\\$&*]+"
+      "value": "[a-zA-Z0-9.\\-_\\$#]+"
     },
     "capture": {
       "type": "SEQ",
@@ -113,7 +113,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "capture_identifier"
+            "name": "identifier"
           }
         }
       ]
@@ -137,6 +137,19 @@
           }
         ]
       }
+    },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ";"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
     },
     "list": {
       "type": "SEQ",

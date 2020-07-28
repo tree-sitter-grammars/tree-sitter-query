@@ -34,12 +34,17 @@
         "required": true,
         "types": [
           {
-            "type": "capture_identifier",
+            "type": "identifier",
             "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "field_definition",
@@ -66,6 +71,10 @@
       "types": [
         {
           "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -115,6 +124,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -158,6 +171,10 @@
         },
         {
           "type": "capture",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -214,6 +231,10 @@
         },
         {
           "type": "capture",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -312,6 +333,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -365,6 +390,10 @@
     "named": false
   },
   {
+    "type": ";",
+    "named": false
+  },
+  {
     "type": "?",
     "named": false
   },
@@ -379,10 +408,6 @@
   {
     "type": "]",
     "named": false
-  },
-  {
-    "type": "capture_identifier",
-    "named": true
   },
   {
     "type": "identifier",
