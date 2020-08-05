@@ -148,7 +148,7 @@ Predicates
 
 (
   (identifier) @v
-  (eq? @v "test")
+  (eq? @v "test" local)
 )
 
 ---
@@ -163,4 +163,5 @@ Predicates
       type: (predicate_type)
       parameters: (parameters
         (capture name: (identifier))
-        (string)))))
+        (string)
+        (identifier)))))
