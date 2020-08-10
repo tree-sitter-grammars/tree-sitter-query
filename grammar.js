@@ -1,3 +1,7 @@
+const PREC = {
+  IMMEDIATE_CHILD: 1
+};
+
 module.exports = grammar({
   name: "query",
   rules: {
@@ -9,10 +13,31 @@ module.exports = grammar({
         $.grouping,
         $.predicate,
         $.list,
-        $.comment
+        $.comment,
+        $._expressions
+      ),
+    _expressions: $ =>
+      choice(
+        $.immediate_child_expression,
+        $.first_child_expression,
+        $.last_child_expression
       ),
     _string: $ => seq('"', repeat(token.immediate(/[^"]/)), '"'),
     _field_name: $ => seq($.identifier, ":"),
+    _child_op: $ => ".",
+    immediate_child_expression: $ =>
+      prec.left(
+        PREC.IMMEDIATE_CHILD,
+        seq(
+          field("left", $.named_node),
+          $._child_op,
+          field("right", $.named_node)
+        )
+      ),
+    first_child_expression: $ =>
+      seq($._child_op, field("argument", $.named_node)),
+    last_child_expression: $ =>
+      seq(field("argument", $.named_node), $._child_op),
     predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
     field_definition: $ => seq(field("name", $._field_name), $._definition),
