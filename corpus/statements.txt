@@ -178,3 +178,64 @@ Predicates
         (capture name: (identifier))
         (string)
         (identifier)))))
+
+====================================
+Immediate Child Operator (immediate)
+====================================
+
+(
+  (comment)
+  .
+  (function_declaration)
+)
+[(identifier) . (comment) "test"]
+
+---
+
+(program
+  (grouping
+    (immediate_child_expression
+      left: (named_node name: (identifier))
+      right: (named_node name: (identifier))))
+  (list
+    (immediate_child_expression
+      left: (named_node name: (identifier))
+      right: (named_node name: (identifier)))
+    (anonymous_node)))
+
+======================================
+Immediate Child Operator (first child)
+======================================
+
+(array . (identifier))
+[. (identifier) "it"]
+
+---
+
+(program
+  (named_node name: (identifier)
+    (first_child_expression
+      argument: (named_node name: (identifier))))
+  (list
+    (first_child_expression
+      argument: (named_node name: (identifier)))
+    (anonymous_node)))
+
+======================================
+Immediate Child Operator (last child)
+======================================
+
+(array (identifier) .)
+[(identifier) . "it"]
+
+---
+
+(program
+  (named_node name: (identifier)
+    (last_child_expression
+      argument: (named_node name: (identifier))))
+  (list
+    (last_child_expression
+      argument: (named_node name: (identifier)))
+    (anonymous_node)))
+

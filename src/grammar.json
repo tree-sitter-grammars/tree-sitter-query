@@ -34,6 +34,27 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expressions"
+        }
+      ]
+    },
+    "_expressions": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "immediate_child_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "first_child_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "last_child_expression"
         }
       ]
     },
@@ -70,6 +91,73 @@
         {
           "type": "STRING",
           "value": ":"
+        }
+      ]
+    },
+    "_child_op": {
+      "type": "STRING",
+      "value": "."
+    },
+    "immediate_child_expression": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "named_node"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_child_op"
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "named_node"
+            }
+          }
+        ]
+      }
+    },
+    "first_child_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_child_op"
+        },
+        {
+          "type": "FIELD",
+          "name": "argument",
+          "content": {
+            "type": "SYMBOL",
+            "name": "named_node"
+          }
+        }
+      ]
+    },
+    "last_child_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "argument",
+          "content": {
+            "type": "SYMBOL",
+            "name": "named_node"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_child_op"
         }
       ]
     },
