@@ -11,20 +11,21 @@ module.exports = grammar({
         $.list,
         $.comment
       ),
+    _string: $ => seq('"', repeat(token.immediate(/[^"]/)), '"'),
     _field_name: $ => seq($.identifier, ":"),
     predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
     field_definition: $ => seq(field("name", $._field_name), $._definition),
     identifier: $ => /[a-zA-Z0-9.\-_\$#]+/,
     capture: $ => seq("@", field("name", $.identifier)),
-    string: $ => /".*"/,
+    string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
     comment: $ => seq(";", /.*/),
     list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
     grouping: $ =>
       seq("(", repeat($._definition), ")", quantifier($), captures($)),
     anonymous_node: $ =>
-      seq(/".*"/, optional(field("quantifier", $.quantifier)), captures($)),
+      seq($._string, optional(field("quantifier", $.quantifier)), captures($)),
     named_node: $ =>
       seq(
         "(",
