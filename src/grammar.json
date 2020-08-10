@@ -37,6 +37,29 @@
         }
       ]
     },
+    "_string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\"]"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
     "_field_name": {
       "type": "SEQ",
       "members": [
@@ -119,8 +142,8 @@
       ]
     },
     "string": {
-      "type": "PATTERN",
-      "value": "\".*\""
+      "type": "SYMBOL",
+      "name": "_string"
     },
     "parameters": {
       "type": "REPEAT1",
@@ -261,8 +284,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\".*\""
+          "type": "SYMBOL",
+          "name": "_string"
         },
         {
           "type": "CHOICE",
