@@ -24,6 +24,19 @@ Anonymous nodes
     name: (identifier))
   (anonymous_node))
 
+========================
+Anonymous nodes (series)
+========================
+
+("it" "blorg")
+
+---
+
+(program
+  (grouping
+    (anonymous_node)
+    (anonymous_node)))
+
 ===============
 Field names
 ===============
