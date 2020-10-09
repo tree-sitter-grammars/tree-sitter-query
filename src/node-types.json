@@ -291,6 +291,55 @@
     }
   },
   {
+    "type": "modeline",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "modeline_languages",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modeline_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "modeline_language",
+          "named": true
+        },
+        {
+          "type": "optional_language",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modeline_languages",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "modeline_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "named_node",
     "named": true,
     "fields": {
@@ -367,6 +416,21 @@
     }
   },
   {
+    "type": "optional_language",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "modeline_language",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameters",
     "named": true,
     "fields": {},
@@ -436,7 +500,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "anonymous_node",
@@ -464,6 +528,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "modeline",
           "named": true
         },
         {
@@ -512,11 +580,19 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
   {
     "type": ";",
+    "named": false
+  },
+  {
+    "type": "; inherits",
     "named": false
   },
   {
@@ -537,6 +613,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "modeline_language",
     "named": true
   }
 ]

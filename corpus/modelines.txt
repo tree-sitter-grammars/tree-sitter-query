@@ -1,0 +1,110 @@
+===========
+Normal comments
+===========
+
+; comment
+
+(lol)
+
+---
+
+(program
+  (comment)
+  (named_node
+    name: (identifier)))
+
+===========
+Simple inheritance
+===========
+
+; inherits: c
+
+(lol)
+
+---
+
+(program
+ (modeline
+  (modeline_languages
+   (modeline_item (modeline_language))))
+ (named_node name: (identifier)))
+
+===========
+Multiple inheritance
+===========
+
+; inherits: c ,cpp
+
+(lol)
+
+---
+
+(program
+ (modeline
+  (modeline_languages
+   (modeline_item (modeline_language))
+   (modeline_item (modeline_language))))
+ (named_node name: (identifier)))
+
+===========
+Multiple ;
+===========
+
+;;       inherits: c  , cpp
+
+(lol)
+
+---
+
+(program
+ (modeline
+  (modeline_languages
+   (modeline_item (modeline_language))
+   (modeline_item (modeline_language))))
+ (named_node name: (identifier)))
+
+===========
+Multiple optional inheritance
+===========
+
+; inherits: (c) , cpp
+
+(lol)
+
+---
+
+(program
+ (modeline
+  (modeline_languages
+   (modeline_item (optional_language (modeline_language)))
+   (modeline_item (modeline_language))))
+ (named_node name: (identifier)))
+
+===========
+Fake modeline
+===========
+
+;;
+; inherits: (c) , cpp
+
+(lol)
+
+---
+
+(program
+ (comment)
+ (comment)
+ (named_node name: (identifier)))
+
+===========
+Trailing spaces
+===========
+
+; inherits: (c) , cpp           
+
+(lol)
+
+---
+
+(program (modeline (modeline_languages (modeline_item (optional_language (modeline_language))) (modeline_item (modeline_language))))
+         (named_node (identifier)))

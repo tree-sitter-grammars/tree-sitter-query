@@ -2,11 +2,125 @@
   "name": "query",
   "rules": {
     "program": {
-      "type": "REPEAT",
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_maybe_modeline"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_definition"
+          }
+        }
+      ]
+    },
+    "_maybe_modeline": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "modeline"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_definition"
+        }
+      ]
+    },
+    "modeline": {
+      "type": "PREC",
+      "value": 2,
       "content": {
-        "type": "SYMBOL",
-        "name": "_definition"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "; inherits"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\s*:\\s*"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "modeline_languages"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\s*"
+          }
+        ]
       }
+    },
+    "modeline_languages": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "modeline_item"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\s*"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "PATTERN",
+                "value": "\\s*"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "modeline_item"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "modeline_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "optional_language"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modeline_language"
+        }
+      ]
+    },
+    "optional_language": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modeline_language"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "modeline_language": {
+      "type": "PATTERN",
+      "value": "[a-z_]+"
     },
     "_definition": {
       "type": "CHOICE",
@@ -525,7 +639,11 @@
       "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "modeline_languages"
+    ]
+  ],
   "externals": [],
   "inline": [],
   "supertypes": []

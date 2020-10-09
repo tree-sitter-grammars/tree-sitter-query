@@ -4,8 +4,23 @@ const PREC = {
 
 module.exports = grammar({
   name: "query",
+  conflicts: $ => [
+    [$.modeline_languages],
+  ],
   rules: {
-    program: $ => repeat($._definition),
+
+
+    program: $ => seq($._maybe_modeline, repeat($._definition)),
+
+    //local MODELINE_FORMAT = "^;+%s*inherits%s*:%s*([a-z_,()]+)$"
+    _maybe_modeline: $ => choice($.modeline, $._definition),
+    modeline: $ => prec(2, seq('; inherits', /\s*:\s*/, $.modeline_languages, /\s*/)),
+    modeline_languages: $ => seq($.modeline_item, repeat(seq(/\s*/, ',', /\s*/,$.modeline_item))),
+    modeline_item: $ => choice($.optional_language, $.modeline_language),
+    optional_language: $ => seq('(', $.modeline_language, ")"),
+    modeline_language: _ => /[a-z_]+/,
+
+    //program: $ => seq(repeat($._definition)),
     _definition: $ =>
       choice(
         $.named_node,
