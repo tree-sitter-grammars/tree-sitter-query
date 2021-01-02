@@ -22,7 +22,20 @@ module.exports = grammar({
         $.first_child_expression,
         $.last_child_expression
       ),
-    _string: $ => seq('"', repeat(token.immediate(/[^"]/)), '"'),
+
+    _string: $ => seq('"', repeat(choice(token.immediate(/[^"]/), $.escape_sequence)), '"'),
+    // Taken from https://github.com/tree-sitter/tree-sitter-javascript/blob/3f8b62f9befd3cb3b4cb0de22f6595a0aadf76ca/grammar.js#L827
+    escape_sequence: $ => token.immediate(seq(
+      '\\',
+      choice(
+        /[^xu0-7]/,
+        /[0-7]{1,3}/,
+        /x[0-9a-fA-F]{2}/,
+        /u[0-9a-fA-F]{4}/,
+        /u{[0-9a-fA-F]+}/
+      )
+    )),
+
     _field_name: $ => seq($.identifier, ":"),
     _child_op: $ => ".",
     immediate_child_expression: $ =>
