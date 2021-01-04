@@ -239,3 +239,37 @@ Immediate Child Operator (last child)
       argument: (named_node name: (identifier)))
     (anonymous_node)))
 
+=======
+Strings
+=======
+
+((identifier) @v
+  (#eq? @v "test\"")
+  (#eq? @v "tes\"\"ting")
+  (#eq? @v "\"test"))
+
+---
+
+(program
+  (grouping
+    (named_node
+      name: (identifier)
+      (capture name: (identifier)))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture name: (identifier))
+        (string (escape_sequence))))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture name: (identifier))
+        (string (escape_sequence) (escape_sequence))))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture name: (identifier))
+        (string (escape_sequence))))))
