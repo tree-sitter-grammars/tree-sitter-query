@@ -46,11 +46,6 @@
     }
   },
   {
-    "type": "comment",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "field_definition",
     "named": true,
     "fields": {
@@ -75,10 +70,6 @@
       "types": [
         {
           "type": "anonymous_node",
-          "named": true
-        },
-        {
-          "type": "comment",
           "named": true
         },
         {
@@ -153,10 +144,6 @@
         },
         {
           "type": "capture",
-          "named": true
-        },
-        {
-          "type": "comment",
           "named": true
         },
         {
@@ -260,10 +247,6 @@
           "named": true
         },
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "first_child_expression",
           "named": true
         },
@@ -329,10 +312,6 @@
         },
         {
           "type": "capture",
-          "named": true
-        },
-        {
-          "type": "comment",
           "named": true
         },
         {
@@ -444,10 +423,6 @@
       "types": [
         {
           "type": "anonymous_node",
-          "named": true
-        },
-        {
-          "type": "comment",
           "named": true
         },
         {

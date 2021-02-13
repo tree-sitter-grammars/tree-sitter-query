@@ -4,6 +4,12 @@ const PREC = {
 
 module.exports = grammar({
   name: "query",
+
+  extras: $ => [
+    $.comment,
+    /\s+/,
+  ],
+
   rules: {
     program: $ => repeat($._definition),
     _definition: $ =>
@@ -13,7 +19,6 @@ module.exports = grammar({
         $.grouping,
         $.predicate,
         $.list,
-        $.comment,
         $._expressions
       ),
     _expressions: $ =>
