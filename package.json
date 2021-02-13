@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tree-sitter generate",
     "test": "tree-sitter test"
   },
   "author": "",

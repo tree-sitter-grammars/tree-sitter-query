@@ -273,3 +273,39 @@ Strings
       parameters: (parameters
         (capture name: (identifier))
         (string (escape_sequence))))))
+
+========
+Comments
+========
+
+(#match?
+ @foo
+ ; bar
+ "foo")
+
+(node
+  ; Capture the name
+  name: (string))
+
+(string
+  ; wild comment!
+  )
+
+---
+
+(program
+  (predicate
+    name: (identifier)
+    type: (predicate_type)
+    parameters: (parameters
+      (capture name: (identifier))
+      (comment)
+      (string)))
+  (named_node
+    name: (identifier)
+    (comment)
+    (field_definition
+      name: (identifier)
+      (named_node name: (identifier))))
+  (named_node
+    name: (identifier) (comment)))
