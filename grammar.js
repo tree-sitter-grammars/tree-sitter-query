@@ -1,5 +1,9 @@
 const PREC = {
-  IMMEDIATE_CHILD: 1
+  IMMEDIATE_CHILD: 1,
+
+  // Prefer a string over a comment
+  COMMENT: 1,
+  STRING: 2,
 };
 
 module.exports = grammar({
@@ -28,7 +32,14 @@ module.exports = grammar({
         $.last_child_expression
       ),
 
-    _string: $ => seq('"', repeat(choice(token.immediate(/[^"]/), $.escape_sequence)), '"'),
+    _string: $ => seq(
+      '"',
+      repeat(choice(
+        token.immediate(prec(PREC.STRING, /[^"\\]+/)),
+        $.escape_sequence,
+      )),
+      '"',
+    ),
     // Taken from https://github.com/tree-sitter/tree-sitter-javascript/blob/3f8b62f9befd3cb3b4cb0de22f6595a0aadf76ca/grammar.js#L827
     escape_sequence: $ => token.immediate(seq(
       '\\',
@@ -63,7 +74,7 @@ module.exports = grammar({
     capture: $ => seq("@", field("name", $.identifier)),
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
-    comment: $ => seq(";", /.*/),
+    comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
     grouping: $ =>
       seq("(", repeat($._definition), ")", quantifier($), captures($)),
