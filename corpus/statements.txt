@@ -17,11 +17,14 @@ Anonymous nodes
 (program)
 "it"
 
+";"
+
 ---
 
 (program
   (named_node
     name: (identifier))
+  (anonymous_node)
   (anonymous_node))
 
 ========================
@@ -244,6 +247,7 @@ Strings
 =======
 
 ((identifier) @v
+  (#eq? @v "I'm a string; not a comment")
   (#eq? @v "test\"")
   (#eq? @v "tes\"\"ting")
   (#eq? @v "\"test"))
@@ -255,6 +259,12 @@ Strings
     (named_node
       name: (identifier)
       (capture name: (identifier)))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture name: (identifier))
+        (string)))
     (predicate
       name: (identifier)
       type: (predicate_type)
