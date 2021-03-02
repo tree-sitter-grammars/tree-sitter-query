@@ -8,7 +8,7 @@
     "test": "tree-sitter test"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "nan": "^2.14.1"
   },
