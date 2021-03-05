@@ -4,7 +4,7 @@ description = "query grammar for the tree-sitter parsing library"
 version = "0.0.1"
 keywords = ["incremental", "parsing", "query"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-javascript"
+repository = "https://github.com/nvim-treesitter/tree-sitter-query"
 edition = "2018"
 
 build = "bindings/rust/build.rs"
