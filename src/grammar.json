@@ -13,11 +13,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "named_node"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "anonymous_node"
+          "name": "_node"
         },
         {
           "type": "SYMBOL",
@@ -34,6 +30,19 @@
         {
           "type": "SYMBOL",
           "name": "_expressions"
+        }
+      ]
+    },
+    "_node": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "named_node"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_node"
         }
       ]
     },
@@ -155,7 +164,7 @@
             "name": "left",
             "content": {
               "type": "SYMBOL",
-              "name": "named_node"
+              "name": "_node"
             }
           },
           {
@@ -167,7 +176,7 @@
             "name": "right",
             "content": {
               "type": "SYMBOL",
-              "name": "named_node"
+              "name": "_node"
             }
           }
         ]
@@ -185,7 +194,7 @@
           "name": "argument",
           "content": {
             "type": "SYMBOL",
-            "name": "named_node"
+            "name": "_node"
           }
         }
       ]
@@ -198,7 +207,7 @@
           "name": "argument",
           "content": {
             "type": "SYMBOL",
-            "name": "named_node"
+            "name": "_node"
           }
         },
         {

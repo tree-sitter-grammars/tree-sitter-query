@@ -18,13 +18,14 @@ module.exports = grammar({
     program: $ => repeat($._definition),
     _definition: $ =>
       choice(
-        $.named_node,
-        $.anonymous_node,
+        $._node,
         $.grouping,
         $.predicate,
         $.list,
         $._expressions
       ),
+
+    _node: $ => choice($.named_node, $.anonymous_node),
     _expressions: $ =>
       choice(
         $.immediate_child_expression,
@@ -58,15 +59,16 @@ module.exports = grammar({
       prec.left(
         PREC.IMMEDIATE_CHILD,
         seq(
-          field("left", $.named_node),
+          field("left", $._node),
           $._child_op,
-          field("right", $.named_node)
+          field("right", $._node)
         )
       ),
     first_child_expression: $ =>
-      seq($._child_op, field("argument", $.named_node)),
+      seq($._child_op, field("argument", $._node)),
     last_child_expression: $ =>
-      seq(field("argument", $.named_node), $._child_op),
+      seq(field("argument", $._node), $._child_op),
+
     predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
     field_definition: $ => seq(field("name", $._field_name), $._definition),

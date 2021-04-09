@@ -193,18 +193,42 @@ Immediate Child Operator (immediate)
 )
 [(identifier) . (comment) "test"]
 
+((identifier) . "test")
+
+("test" . "test")
+
+("test" . (identifier))
+
 ---
 
 (program
   (grouping
     (immediate_child_expression
-      left: (named_node name: (identifier))
-      right: (named_node name: (identifier))))
+      left: (named_node
+        name: (identifier))
+      right: (named_node
+        name: (identifier))))
   (list
     (immediate_child_expression
-      left: (named_node name: (identifier))
-      right: (named_node name: (identifier)))
-    (anonymous_node)))
+      left: (named_node
+        name: (identifier))
+      right: (named_node
+        name: (identifier)))
+    (anonymous_node))
+  (grouping
+    (immediate_child_expression
+      left: (named_node
+        name: (identifier))
+      right: (anonymous_node)))
+  (grouping
+    (immediate_child_expression
+      left: (anonymous_node)
+      right: (anonymous_node)))
+  (grouping
+    (immediate_child_expression
+      left: (anonymous_node)
+      right: (named_node
+        name: (identifier)))))
 
 ======================================
 Immediate Child Operator (first child)
@@ -213,16 +237,25 @@ Immediate Child Operator (first child)
 (array . (identifier))
 [. (identifier) "it"]
 
----
+(string . "'")
+
+--------------------------------------------------------------------------------
 
 (program
-  (named_node name: (identifier)
+  (named_node
+    name: (identifier)
     (first_child_expression
-      argument: (named_node name: (identifier))))
+      argument: (named_node
+        name: (identifier))))
   (list
     (first_child_expression
-      argument: (named_node name: (identifier)))
-    (anonymous_node)))
+      argument: (named_node
+        name: (identifier)))
+    (anonymous_node))
+  (named_node
+    name: (identifier)
+    (first_child_expression
+      argument: (anonymous_node))))
 
 ======================================
 Immediate Child Operator (last child)
@@ -231,16 +264,25 @@ Immediate Child Operator (last child)
 (array (identifier) .)
 [(identifier) . "it"]
 
----
+(string "'" .)
+
+--------------------------------------------------------------------------------
 
 (program
-  (named_node name: (identifier)
+  (named_node
+    name: (identifier)
     (last_child_expression
-      argument: (named_node name: (identifier))))
+      argument: (named_node
+        name: (identifier))))
   (list
+    (immediate_child_expression
+      left: (named_node
+        name: (identifier))
+      right: (anonymous_node)))
+  (named_node
+    name: (identifier)
     (last_child_expression
-      argument: (named_node name: (identifier)))
-    (anonymous_node)))
+      argument: (anonymous_node))))
 
 =======
 Strings

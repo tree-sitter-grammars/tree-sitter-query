@@ -5,7 +5,9 @@
   "main": "bindings/node",
   "scripts": {
     "build": "tree-sitter generate",
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "wasm": "tree-sitter build-wasm",
+    "web": "tree-sitter web-ui"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -13,6 +15,6 @@
     "nan": "^2.14.2"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.19.1"
+    "tree-sitter-cli": "^0.19.4"
   }
 }
