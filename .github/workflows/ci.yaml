@@ -9,5 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - run: echo ./node_modules/.bin/ >> $GITHUB_PATH
       - run: npm ci
       - run: npm run test
+      - run: make clean download-examples parse-examples
