@@ -11,3 +11,5 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm ci
       - run: npm run test
+      - run: echo ./node_modules/.bin/ >> $GITHUB_PATH
+      - run: make clean download-examples parse-examples

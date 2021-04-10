@@ -162,6 +162,13 @@ Lists
   "-"
 ] @ops
 
+(if_statement
+  [
+    condition: (_)
+    consequence: (_)
+    alternative: (_)?
+  ] @conditional.inner) @conditional.outer
+
 --------------------------------------------------------------------------------
 
 (program
@@ -169,6 +176,26 @@ Lists
     (anonymous_node)
     (anonymous_node)
     (anonymous_node)
+    (capture
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (list
+      (field_definition
+        name: (identifier)
+        (named_node
+          name: (identifier)))
+      (field_definition
+        name: (identifier)
+        (named_node
+          name: (identifier)))
+      (field_definition
+        name: (identifier)
+        (named_node
+          name: (identifier)
+          quantifier: (quantifier)))
+      (capture
+        name: (identifier)))
     (capture
       name: (identifier))))
 

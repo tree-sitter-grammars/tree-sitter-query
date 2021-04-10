@@ -66,7 +66,7 @@ module.exports = grammar({
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
+    list: $ => seq("[", repeat(choice($._definition, $.field_definition)), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
