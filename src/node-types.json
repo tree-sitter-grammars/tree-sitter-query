@@ -73,19 +73,7 @@
           "named": true
         },
         {
-          "type": "first_child_expression",
-          "named": true
-        },
-        {
           "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "immediate_child_expression",
-          "named": true
-        },
-        {
-          "type": "last_child_expression",
           "named": true
         },
         {
@@ -101,26 +89,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "first_child_expression",
-    "named": true,
-    "fields": {
-      "argument": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "anonymous_node",
-            "named": true
-          },
-          {
-            "type": "named_node",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -151,19 +119,7 @@
           "named": true
         },
         {
-          "type": "first_child_expression",
-          "named": true
-        },
-        {
           "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "immediate_child_expression",
-          "named": true
-        },
-        {
-          "type": "last_child_expression",
           "named": true
         },
         {
@@ -179,60 +135,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "immediate_child_expression",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "anonymous_node",
-            "named": true
-          },
-          {
-            "type": "named_node",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "anonymous_node",
-            "named": true
-          },
-          {
-            "type": "named_node",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "last_child_expression",
-    "named": true,
-    "fields": {
-      "argument": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "anonymous_node",
-            "named": true
-          },
-          {
-            "type": "named_node",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -263,19 +165,7 @@
           "named": true
         },
         {
-          "type": "first_child_expression",
-          "named": true
-        },
-        {
           "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "immediate_child_expression",
-          "named": true
-        },
-        {
-          "type": "last_child_expression",
           "named": true
         },
         {
@@ -335,19 +225,7 @@
           "named": true
         },
         {
-          "type": "first_child_expression",
-          "named": true
-        },
-        {
           "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "immediate_child_expression",
-          "named": true
-        },
-        {
-          "type": "last_child_expression",
           "named": true
         },
         {
@@ -442,19 +320,7 @@
           "named": true
         },
         {
-          "type": "first_child_expression",
-          "named": true
-        },
-        {
           "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "immediate_child_expression",
-          "named": true
-        },
-        {
-          "type": "last_child_expression",
           "named": true
         },
         {
@@ -514,6 +380,10 @@
   },
   {
     "type": "+",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {

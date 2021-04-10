@@ -16,22 +16,27 @@ module.exports = grammar({
 
   rules: {
     program: $ => repeat($._definition),
-    _definition: $ =>
-      choice(
-        $._node,
-        $.grouping,
-        $.predicate,
-        $.list,
-        $._expressions
-      ),
 
-    _node: $ => choice($.named_node, $.anonymous_node),
-    _expressions: $ =>
-      choice(
-        $.immediate_child_expression,
-        $.first_child_expression,
-        $.last_child_expression
-      ),
+    _definition: $ => choice(
+      $.named_node,
+      $.anonymous_node,
+      $.grouping,
+      $.predicate,
+      $.list,
+    ),
+
+    // Expressions that are valid inside a group.
+    _group_expression: $ => choice(
+      $._definition,
+      immediate_child($._group_expression),
+    ),
+
+    // Expressions that are valid inside a named node.
+    _named_node_expression: $ => choice(
+      $._definition,
+      $.field_definition,
+      immediate_child($._named_node_expression),
+    ),
 
     _string: $ => seq(
       '"',
@@ -53,44 +58,51 @@ module.exports = grammar({
       )
     )),
 
-    _field_name: $ => seq($.identifier, ":"),
-    _child_op: $ => ".",
-    immediate_child_expression: $ =>
-      prec.left(
-        PREC.IMMEDIATE_CHILD,
-        seq(
-          field("left", $._node),
-          $._child_op,
-          field("right", $._node)
-        )
-      ),
-    first_child_expression: $ =>
-      seq($._child_op, field("argument", $._node)),
-    last_child_expression: $ =>
-      seq(field("argument", $._node), $._child_op),
-
     predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
-    field_definition: $ => seq(field("name", $._field_name), $._definition),
+
     identifier: $ => /[a-zA-Z0-9.\-_\$#]+/,
     capture: $ => seq("@", field("name", $.identifier)),
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
-    grouping: $ =>
-      seq("(", repeat($._definition), ")", quantifier($), captures($)),
-    anonymous_node: $ =>
-      seq($._string, optional(field("quantifier", $.quantifier)), captures($)),
-    named_node: $ =>
-      seq(
-        "(",
-        field("name", $.identifier),
-        repeat(choice($._definition, $.field_definition)),
-        ")",
-        quantifier($),
-        captures($)
+
+    grouping: $ => seq(
+      "(",
+      repeat($._group_expression),
+      ")",
+      quantifier($),
+      captures($),
+    ),
+
+    anonymous_node: $ => seq($._string, quantifier($), captures($)),
+
+    named_node: $ => seq(
+      "(",
+      field("name", $.identifier),
+      optional(
+        seq(
+          optional("."),
+          choice(
+            repeat1($._named_node_expression),
+            seq(
+              repeat($._named_node_expression),
+              seq($._named_node_expression, "."),
+            )
+          ),
+        ),
       ),
+      ")",
+      quantifier($),
+      captures($)
+    ),
+    _field_name: $ => seq($.identifier, ":"),
+    field_definition: $ => seq(
+      field("name", $._field_name),
+      $._definition,
+    ),
+
     predicate: $ =>
       seq(
         "(",
@@ -107,4 +119,11 @@ function captures($) {
 
 function quantifier($) {
   return optional(field("quantifier", $.quantifier));
+}
+
+function immediate_child(expression) {
+  return prec.left(
+    PREC.IMMEDIATE_CHILD,
+    seq(expression, ".", expression),
+  );
 }

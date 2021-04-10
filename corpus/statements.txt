@@ -1,25 +1,25 @@
-===========
+================================================================================
 Named nodes
-===========
+================================================================================
 
 (program)
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
     name: (identifier)))
 
-===============
+================================================================================
 Anonymous nodes
-===============
+================================================================================
 
 (program)
 "it"
 
 ";"
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
@@ -27,27 +27,27 @@ Anonymous nodes
   (anonymous_node)
   (anonymous_node))
 
-========================
+================================================================================
 Anonymous nodes (series)
-========================
+================================================================================
 
 ("it" "blorg")
 
----
+--------------------------------------------------------------------------------
 
 (program
   (grouping
     (anonymous_node)
     (anonymous_node)))
 
-===============
+================================================================================
 Field names
-===============
+================================================================================
 
 (program
   name: (identifier))
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
@@ -57,14 +57,14 @@ Field names
       (named_node
         name: (identifier)))))
 
-===============
+================================================================================
 Quantifiers (+)
-===============
+================================================================================
 
 (program
   (identifier)+)
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
@@ -73,14 +73,14 @@ Quantifiers (+)
       name: (identifier)
       quantifier: (quantifier))))
 
-===============
+================================================================================
 Quantifiers (?)
-===============
+================================================================================
 
 (program
   (identifier)?)
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
@@ -89,14 +89,14 @@ Quantifiers (?)
       name: (identifier)
       quantifier: (quantifier))))
 
-===============
+================================================================================
 Quantifiers (*)
-===============
+================================================================================
 
 (program
   (identifier)*)
 
----
+--------------------------------------------------------------------------------
 
 (program
   (named_node
@@ -105,43 +105,56 @@ Quantifiers (*)
       name: (identifier)
       quantifier: (quantifier))))
 
-======
+================================================================================
 Groups
-======
+================================================================================
 
-(
-  (comment)
-  (function_declaration)
-)
+((comment) (function_declaration))
 
----
+((node) [(node) "test"])
+
+--------------------------------------------------------------------------------
 
 (program
   (grouping
-    (named_node name: (identifier))
-    (named_node name: (identifier))))
+    (named_node
+      name: (identifier))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))))
 
-========
+================================================================================
 Captures
-========
+================================================================================
 
 (class_declaration
   body: (class_body) @class.body @test) @blorg
 
----
+--------------------------------------------------------------------------------
 
 (program
-  (named_node name: (identifier)
-    (field_definition name: (identifier)
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
       (named_node
         name: (identifier)
-        (capture name: (identifier))
-        (capture name: (identifier))))
-    (capture name: (identifier))))
+        (capture
+          name: (identifier))
+        (capture
+          name: (identifier))))
+    (capture
+      name: (identifier))))
 
-=====
+================================================================================
 Lists
-=====
+================================================================================
 
 [
   "?"
@@ -149,144 +162,294 @@ Lists
   "-"
 ] @ops
 
----
+--------------------------------------------------------------------------------
 
 (program
   (list
     (anonymous_node)
     (anonymous_node)
     (anonymous_node)
-    (capture name: (identifier))))
+    (capture
+      name: (identifier))))
 
-==========
+================================================================================
 Predicates
-==========
+================================================================================
 
 (
   (identifier) @v
   (eq? @v "test" local)
 )
 
----
+--------------------------------------------------------------------------------
 
 (program
   (grouping
     (named_node
       name: (identifier)
-      (capture name: (identifier)))
+      (capture
+        name: (identifier)))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (identifier))
+        (capture
+          name: (identifier))
         (string)
         (identifier)))))
 
-====================================
-Immediate Child Operator (immediate)
-====================================
+================================================================================
+Immediate Child Operator
+================================================================================
 
-(
-  (comment)
-  .
-  (function_declaration)
-)
-[(identifier) . (comment) "test"]
-
-((identifier) . "test")
+((comment) . (function_declaration))
+((identifier) . "and" . (identifier))
 
 ("test" . "test")
-
+((identifier) . "test")
 ("test" . (identifier))
 
----
+((node) . [(node) "test"] . (node))
+((node) [(node) "test"] . (node))
+((node) . [(node) "test"] (node))
 
-(program
-  (grouping
-    (immediate_child_expression
-      left: (named_node
-        name: (identifier))
-      right: (named_node
-        name: (identifier))))
-  (list
-    (immediate_child_expression
-      left: (named_node
-        name: (identifier))
-      right: (named_node
-        name: (identifier)))
-    (anonymous_node))
-  (grouping
-    (immediate_child_expression
-      left: (named_node
-        name: (identifier))
-      right: (anonymous_node)))
-  (grouping
-    (immediate_child_expression
-      left: (anonymous_node)
-      right: (anonymous_node)))
-  (grouping
-    (immediate_child_expression
-      left: (anonymous_node)
-      right: (named_node
-        name: (identifier)))))
-
-======================================
-Immediate Child Operator (first child)
-======================================
+((node) . [(node) "test"] [(node)])
+((node) . [(node) "test"] . [(node)])
 
 (array . (identifier))
-[. (identifier) "it"]
+(array (identifier) .)
+(array . (identifier) .)
 
 (string . "'")
+(string "'" .)
+(string . "'" . "'" .)
+
+(node (a) . "b" . (c))
+(node . (a) . "b" . (c))
+(node (a) . "b" . (c) .)
+(node . (a) . "b" . (c) .)
+
+(node . name: (identifier))
+(node name: (identifier) .)
+(node . name: (identifier) .)
+
+(node . name: (identifier) (identifier))
+(node name: (identifier) . (identifier))
+(node . name: (identifier) . (identifier) .)
+
+(node . name: (identifier) . another: (identifier) .)
+(node . name: (identifier) . another: (identifier))
+(node name: (identifier) . another: (identifier) .)
+(node name: (identifier) . another: (identifier))
 
 --------------------------------------------------------------------------------
 
 (program
+  (grouping
+    (named_node
+      name: (identifier))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (grouping
+    (anonymous_node)
+    (anonymous_node))
+  (grouping
+    (named_node
+      name: (identifier))
+    (anonymous_node))
+  (grouping
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))
+    (list
+      (named_node
+        name: (identifier))))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node))
+    (list
+      (named_node
+        name: (identifier))))
   (named_node
     name: (identifier)
-    (first_child_expression
-      argument: (named_node
-        name: (identifier))))
-  (list
-    (first_child_expression
-      argument: (named_node
-        name: (identifier)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
     (anonymous_node))
   (named_node
     name: (identifier)
-    (first_child_expression
-      argument: (anonymous_node))))
-
-======================================
-Immediate Child Operator (last child)
-======================================
-
-(array (identifier) .)
-[(identifier) . "it"]
-
-(string "'" .)
-
---------------------------------------------------------------------------------
-
-(program
+    (anonymous_node))
   (named_node
     name: (identifier)
-    (last_child_expression
-      argument: (named_node
+    (anonymous_node)
+    (anonymous_node))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier))
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier))
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier))
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier))
+    (anonymous_node)
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
         name: (identifier))))
-  (list
-    (immediate_child_expression
-      left: (named_node
-        name: (identifier))
-      right: (anonymous_node)))
   (named_node
     name: (identifier)
-    (last_child_expression
-      argument: (anonymous_node))))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))
+    (field_definition
+      name: (identifier)
+      (named_node
+        name: (identifier)))))
 
-=======
+================================================================================
 Strings
-=======
+================================================================================
 
 ((identifier) @v
   (#eq? @v "I'm a string; not a comment")
@@ -294,41 +457,50 @@ Strings
   (#eq? @v "tes\"\"ting")
   (#eq? @v "\"test"))
 
----
+--------------------------------------------------------------------------------
 
 (program
   (grouping
     (named_node
       name: (identifier)
-      (capture name: (identifier)))
+      (capture
+        name: (identifier)))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (identifier))
+        (capture
+          name: (identifier))
         (string)))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (identifier))
-        (string (escape_sequence))))
+        (capture
+          name: (identifier))
+        (string
+          (escape_sequence))))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (identifier))
-        (string (escape_sequence) (escape_sequence))))
+        (capture
+          name: (identifier))
+        (string
+          (escape_sequence)
+          (escape_sequence))))
     (predicate
       name: (identifier)
       type: (predicate_type)
       parameters: (parameters
-        (capture name: (identifier))
-        (string (escape_sequence))))))
+        (capture
+          name: (identifier))
+        (string
+          (escape_sequence))))))
 
-========
+================================================================================
 Comments
-========
+================================================================================
 
 (#match?
  @foo
@@ -343,14 +515,15 @@ Comments
   ; wild comment!
   )
 
----
+--------------------------------------------------------------------------------
 
 (program
   (predicate
     name: (identifier)
     type: (predicate_type)
     parameters: (parameters
-      (capture name: (identifier))
+      (capture
+        name: (identifier))
       (comment)
       (string)))
   (named_node
@@ -358,6 +531,8 @@ Comments
     (comment)
     (field_definition
       name: (identifier)
-      (named_node name: (identifier))))
+      (named_node
+        name: (identifier))))
   (named_node
-    name: (identifier) (comment)))
+    name: (identifier)
+    (comment)))
