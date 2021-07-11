@@ -204,6 +204,23 @@
       "type": "PATTERN",
       "value": "[a-zA-Z0-9.\\-_\\$#]+"
     },
+    "_node_identifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "STRING",
+            "value": "_"
+          }
+        }
+      ]
+    },
     "capture": {
       "type": "SEQ",
       "members": [
@@ -240,7 +257,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_node_identifier"
           }
         ]
       }
@@ -380,8 +397,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_string"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_string"
+                },
+                "named": true,
+                "value": "identifier"
+              },
+              {
+                "type": "STRING",
+                "value": "_"
+              }
+            ]
+          }
         },
         {
           "type": "CHOICE",
@@ -428,7 +463,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_node_identifier"
           }
         },
         {
