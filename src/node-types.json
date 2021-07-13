@@ -3,6 +3,20 @@
     "type": "anonymous_node",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "quantifier": {
         "multiple": false,
         "required": false,
@@ -20,10 +34,6 @@
       "types": [
         {
           "type": "capture",
-          "named": true
-        },
-        {
-          "type": "escape_sequence",
           "named": true
         }
       ]
@@ -138,6 +148,21 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "list",
     "named": true,
     "fields": {
@@ -196,6 +221,10 @@
         "required": true,
         "types": [
           {
+            "type": "_",
+            "named": false
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -253,7 +282,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "capture",
@@ -411,15 +440,15 @@
     "named": false
   },
   {
+    "type": "_",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
   },
   {
     "type": "escape_sequence",
-    "named": true
-  },
-  {
-    "type": "identifier",
     "named": true
   }
 ]

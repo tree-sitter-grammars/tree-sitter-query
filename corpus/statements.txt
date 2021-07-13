@@ -24,8 +24,10 @@ Anonymous nodes
 (program
   (named_node
     name: (identifier))
-  (anonymous_node)
-  (anonymous_node))
+  (anonymous_node
+    name: (identifier))
+  (anonymous_node
+    name: (identifier)))
 
 ================================================================================
 Anonymous nodes (series)
@@ -37,8 +39,51 @@ Anonymous nodes (series)
 
 (program
   (grouping
-    (anonymous_node)
-    (anonymous_node)))
+    (anonymous_node
+      name: (identifier))
+    (anonymous_node
+      name: (identifier))))
+
+================================================================================
+Wildcard nodes
+================================================================================
+
+_ @wildcard
+
+(_) @wildcard
+
+(node _ @wildcard)
+
+(program
+  name: (_))
+
+(program
+  name: _)
+
+--------------------------------------------------------------------------------
+
+(program
+  (anonymous_node
+    (capture
+      (identifier)))
+  (named_node
+    (capture
+      (identifier)))
+  (named_node
+    (identifier)
+    (anonymous_node
+      (capture
+        (identifier))))
+  (named_node
+    (identifier)
+    (field_definition
+      (identifier)
+      (named_node)))
+  (named_node
+    (identifier)
+    (field_definition
+      (identifier)
+      (anonymous_node))))
 
 ================================================================================
 Field names
@@ -127,7 +172,8 @@ Groups
     (list
       (named_node
         name: (identifier))
-      (anonymous_node))))
+      (anonymous_node
+        name: (identifier)))))
 
 ================================================================================
 Captures
@@ -173,9 +219,12 @@ Lists
 
 (program
   (list
-    (anonymous_node)
-    (anonymous_node)
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
+    (anonymous_node
+      name: (identifier))
+    (anonymous_node
+      name: (identifier))
     (capture
       name: (identifier)))
   (named_node
@@ -183,16 +232,13 @@ Lists
     (list
       (field_definition
         name: (identifier)
-        (named_node
-          name: (identifier)))
+        (named_node))
+      (field_definition
+        name: (identifier)
+        (named_node))
       (field_definition
         name: (identifier)
         (named_node
-          name: (identifier)))
-      (field_definition
-        name: (identifier)
-        (named_node
-          name: (identifier)
           quantifier: (quantifier)))
       (capture
         name: (identifier)))
@@ -280,27 +326,23 @@ Immediate Child Operator
   (grouping
     (named_node
       name: (identifier))
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (grouping
-    (anonymous_node)
-    (anonymous_node))
-  (grouping
-    (named_node
+    (anonymous_node
       name: (identifier))
-    (anonymous_node))
-  (grouping
-    (anonymous_node)
-    (named_node
+    (anonymous_node
       name: (identifier)))
   (grouping
     (named_node
       name: (identifier))
-    (list
-      (named_node
-        name: (identifier))
-      (anonymous_node))
+    (anonymous_node
+      name: (identifier)))
+  (grouping
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (grouping
@@ -309,7 +351,8 @@ Immediate Child Operator
     (list
       (named_node
         name: (identifier))
-      (anonymous_node))
+      (anonymous_node
+        name: (identifier)))
     (named_node
       name: (identifier)))
   (grouping
@@ -318,7 +361,8 @@ Immediate Child Operator
     (list
       (named_node
         name: (identifier))
-      (anonymous_node))
+      (anonymous_node
+        name: (identifier)))
     (named_node
       name: (identifier)))
   (grouping
@@ -327,7 +371,18 @@ Immediate Child Operator
     (list
       (named_node
         name: (identifier))
-      (anonymous_node))
+      (anonymous_node
+        name: (identifier)))
+    (named_node
+      name: (identifier)))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node
+        name: (identifier)))
     (list
       (named_node
         name: (identifier))))
@@ -337,7 +392,8 @@ Immediate Child Operator
     (list
       (named_node
         name: (identifier))
-      (anonymous_node))
+      (anonymous_node
+        name: (identifier)))
     (list
       (named_node
         name: (identifier))))
@@ -355,40 +411,48 @@ Immediate Child Operator
       name: (identifier)))
   (named_node
     name: (identifier)
-    (anonymous_node))
+    (anonymous_node
+      name: (identifier)))
   (named_node
     name: (identifier)
-    (anonymous_node))
+    (anonymous_node
+      name: (identifier)))
   (named_node
     name: (identifier)
-    (anonymous_node)
-    (anonymous_node))
+    (anonymous_node
+      name: (identifier))
+    (anonymous_node
+      name: (identifier)))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
-    (anonymous_node)
+    (anonymous_node
+      name: (identifier))
     (named_node
       name: (identifier)))
   (named_node
