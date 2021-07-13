@@ -4,6 +4,8 @@ const PREC = {
   // Prefer a string over a comment
   COMMENT: 1,
   STRING: 2,
+
+  WILDCARD_NODE: 1,
 };
 
 module.exports = grammar({
@@ -62,9 +64,10 @@ module.exports = grammar({
     quantifier: $ => choice("*", "+", "?"),
 
     identifier: $ => /[a-zA-Z0-9.\-_\$#]+/,
+    _node_identifier: $ => choice($.identifier, prec(PREC.WILDCARD_NODE, "_")),
     capture: $ => seq("@", field("name", $.identifier)),
     string: $ => $._string,
-    parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
+    parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat(choice($._definition, $.field_definition)), "]", quantifier($), captures($)),
 
@@ -76,11 +79,15 @@ module.exports = grammar({
       captures($),
     ),
 
-    anonymous_node: $ => seq($._string, quantifier($), captures($)),
+    anonymous_node: $ => seq(
+      field("name", choice(alias($._string, $.identifier), "_")),
+      quantifier($),
+      captures($),
+    ),
 
     named_node: $ => seq(
       "(",
-      field("name", $.identifier),
+      field("name", $._node_identifier),
       optional(
         seq(
           optional("."),
