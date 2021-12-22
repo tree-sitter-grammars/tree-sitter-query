@@ -83,6 +83,10 @@
           "named": true
         },
         {
+          "type": "field_definition",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -126,6 +130,10 @@
         },
         {
           "type": "capture",
+          "named": true
+        },
+        {
+          "type": "field_definition",
           "named": true
         },
         {
@@ -368,6 +376,10 @@
       "types": [
         {
           "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "field_definition",
           "named": true
         },
         {

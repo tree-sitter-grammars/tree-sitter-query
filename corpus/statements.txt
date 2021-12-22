@@ -92,6 +92,13 @@ Field names
 (program
   name: (identifier))
 
+name: (identifier)
+
+name: [
+  (identifier)
+  (expression)
+]
+
 --------------------------------------------------------------------------------
 
 (program
@@ -99,6 +106,17 @@ Field names
     name: (identifier)
     (field_definition
       name: (identifier)
+      (named_node
+        name: (identifier))))
+  (field_definition
+    name: (identifier)
+    (named_node
+      name: (identifier)))
+  (field_definition
+    name: (identifier)
+    (list
+      (named_node
+        name: (identifier))
       (named_node
         name: (identifier)))))
 

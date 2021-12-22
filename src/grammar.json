@@ -30,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "field_definition"
         }
       ]
     },
@@ -69,10 +73,6 @@
         {
           "type": "SYMBOL",
           "name": "_definition"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "field_definition"
         },
         {
           "type": "SYMBOL",
@@ -300,10 +300,6 @@
               {
                 "type": "SYMBOL",
                 "name": "_definition"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "field_definition"
               }
             ]
           }

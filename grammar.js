@@ -27,6 +27,7 @@ module.exports = grammar({
       $.grouping,
       $.predicate,
       $.list,
+      $.field_definition,
     ),
 
     // Expressions that are valid inside a group.
@@ -38,7 +39,6 @@ module.exports = grammar({
     // Expressions that are valid inside a named node.
     _named_node_expression: $ => choice(
       $._definition,
-      $.field_definition,
       $.negated_field,
       immediate_child($._named_node_expression),
     ),
@@ -72,7 +72,7 @@ module.exports = grammar({
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat(choice($._definition, $.field_definition)), "]", quantifier($), captures($)),
+    list: $ => seq("[", repeat(choice($._definition)), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
