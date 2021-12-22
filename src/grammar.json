@@ -625,8 +625,12 @@
             "type": "SEQ",
             "members": [
               {
+                "type": "STRING",
+                "value": "#"
+              },
+              {
                 "type": "SYMBOL",
-                "name": "_predicate_name"
+                "name": "_immediate_identifier"
               },
               {
                 "type": "FIELD",
@@ -650,28 +654,6 @@
         {
           "type": "STRING",
           "value": ")"
-        }
-      ]
-    },
-    "_predicate_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "#"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_immediate_identifier"
-            }
-          ]
         }
       ]
     },

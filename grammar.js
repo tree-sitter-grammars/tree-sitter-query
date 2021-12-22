@@ -118,16 +118,10 @@ module.exports = grammar({
     predicate: $ =>
       seq(
         "(",
-        field("name", seq($._predicate_name, field("type", $.predicate_type))),
+        field("name", seq("#", $._immediate_identifier, field("type", $.predicate_type))),
         field("parameters", $.parameters),
         ")"
       ),
-
-    _predicate_name: $ => choice(
-      // Deprecated form (no leading `#`).
-      $.identifier,
-      seq("#", $._immediate_identifier)
-    ),
     predicate_type: $ => token.immediate(choice("?", "!")),
   }
 });
