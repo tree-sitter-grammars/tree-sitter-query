@@ -103,6 +103,40 @@ Field names
         name: (identifier)))))
 
 ================================================================================
+Negated fields
+================================================================================
+
+(program
+  field: (identifier) @capture
+  !negated-field)
+
+(program
+  (identifier) @capture
+  !negated-field)
+
+--------------------------------------------------------------------------------
+
+(program
+  (named_node
+    (identifier)
+    (field_definition
+      (identifier)
+      (named_node
+        (identifier)
+        (capture
+          (identifier))))
+    (negated_field
+      (identifier)))
+  (named_node
+    (identifier)
+    (named_node
+      (identifier)
+      (capture
+        (identifier)))
+    (negated_field
+      (identifier))))
+
+================================================================================
 Quantifiers (+)
 ================================================================================
 

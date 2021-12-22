@@ -8,6 +8,8 @@ const PREC = {
   WILDCARD_NODE: 1,
 };
 
+const IDENTIFIER = /[a-zA-Z0-9.\-_\$]+/;
+
 module.exports = grammar({
   name: "query",
 
@@ -37,6 +39,7 @@ module.exports = grammar({
     _named_node_expression: $ => choice(
       $._definition,
       $.field_definition,
+      $.negated_field,
       immediate_child($._named_node_expression),
     ),
 
@@ -60,12 +63,12 @@ module.exports = grammar({
       )
     )),
 
-    predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
 
-    identifier: $ => /[a-zA-Z0-9.\-_\$#]+/,
+    identifier: $ => IDENTIFIER,
+    _immediate_identifier: $ => alias(token.immediate(IDENTIFIER), $.identifier),
     _node_identifier: $ => choice($.identifier, prec(PREC.WILDCARD_NODE, "_")),
-    capture: $ => seq("@", field("name", $.identifier)),
+    capture: $ => seq("@", field("name", $._immediate_identifier)),
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
@@ -110,13 +113,22 @@ module.exports = grammar({
       $._definition,
     ),
 
+    negated_field: $ => seq("!", $.identifier),
+
     predicate: $ =>
       seq(
         "(",
-        field("name", seq($.identifier, field("type", $.predicate_type))),
+        field("name", seq($._predicate_name, field("type", $.predicate_type))),
         field("parameters", $.parameters),
         ")"
-      )
+      ),
+
+    _predicate_name: $ => choice(
+      // Deprecated form (no leading `#`).
+      $.identifier,
+      seq("#", $._immediate_identifier)
+    ),
+    predicate_type: $ => token.immediate(choice("?", "!")),
   }
 });
 
