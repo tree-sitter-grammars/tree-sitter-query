@@ -8,6 +8,8 @@ const PREC = {
   WILDCARD_NODE: 1,
 };
 
+const IDENTIFIER = /[a-zA-Z0-9.\-_\$]+/;
+
 module.exports = grammar({
   name: "query",
 
@@ -25,6 +27,7 @@ module.exports = grammar({
       $.grouping,
       $.predicate,
       $.list,
+      $.field_definition,
     ),
 
     // Expressions that are valid inside a group.
@@ -36,7 +39,7 @@ module.exports = grammar({
     // Expressions that are valid inside a named node.
     _named_node_expression: $ => choice(
       $._definition,
-      $.field_definition,
+      $.negated_field,
       immediate_child($._named_node_expression),
     ),
 
@@ -60,16 +63,16 @@ module.exports = grammar({
       )
     )),
 
-    predicate_type: $ => choice("?", "!"),
     quantifier: $ => choice("*", "+", "?"),
 
-    identifier: $ => /[a-zA-Z0-9.\-_\$#]+/,
+    identifier: $ => IDENTIFIER,
+    _immediate_identifier: $ => alias(token.immediate(IDENTIFIER), $.identifier),
     _node_identifier: $ => choice($.identifier, prec(PREC.WILDCARD_NODE, "_")),
-    capture: $ => seq("@", field("name", $.identifier)),
+    capture: $ => seq("@", field("name", $._immediate_identifier)),
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat(choice($._definition, $.field_definition)), "]", quantifier($), captures($)),
+    list: $ => seq("[", repeat(choice($._definition)), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
@@ -110,13 +113,16 @@ module.exports = grammar({
       $._definition,
     ),
 
+    negated_field: $ => seq("!", $.identifier),
+
     predicate: $ =>
       seq(
         "(",
-        field("name", seq($.identifier, field("type", $.predicate_type))),
+        field("name", seq("#", $._immediate_identifier, field("type", $.predicate_type))),
         field("parameters", $.parameters),
         ")"
-      )
+      ),
+    predicate_type: $ => token.immediate(choice("?", "!")),
   }
 });
 
