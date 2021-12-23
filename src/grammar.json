@@ -30,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "field_definition"
         }
       ]
     },
@@ -72,7 +76,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "field_definition"
+          "name": "negated_field"
         },
         {
           "type": "PREC_LEFT",
@@ -170,19 +174,6 @@
         ]
       }
     },
-    "predicate_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "?"
-        },
-        {
-          "type": "STRING",
-          "value": "!"
-        }
-      ]
-    },
     "quantifier": {
       "type": "CHOICE",
       "members": [
@@ -202,7 +193,19 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9.\\-_\\$#]+"
+      "value": "[a-zA-Z0-9.\\-_\\$]+"
+    },
+    "_immediate_identifier": {
+      "type": "ALIAS",
+      "content": {
+        "type": "IMMEDIATE_TOKEN",
+        "content": {
+          "type": "PATTERN",
+          "value": "[a-zA-Z0-9.\\-_\\$]+"
+        }
+      },
+      "named": true,
+      "value": "identifier"
     },
     "_node_identifier": {
       "type": "CHOICE",
@@ -233,7 +236,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_immediate_identifier"
           }
         }
       ]
@@ -297,10 +300,6 @@
               {
                 "type": "SYMBOL",
                 "name": "_definition"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "field_definition"
               }
             ]
           }
@@ -595,6 +594,19 @@
         }
       ]
     },
+    "negated_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
     "predicate": {
       "type": "SEQ",
       "members": [
@@ -609,8 +621,12 @@
             "type": "SEQ",
             "members": [
               {
+                "type": "STRING",
+                "value": "#"
+              },
+              {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "_immediate_identifier"
               },
               {
                 "type": "FIELD",
@@ -636,6 +652,22 @@
           "value": ")"
         }
       ]
+    },
+    "predicate_type": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "?"
+          },
+          {
+            "type": "STRING",
+            "value": "!"
+          }
+        ]
+      }
     }
   },
   "extras": [

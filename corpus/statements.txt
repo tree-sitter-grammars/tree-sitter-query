@@ -92,6 +92,13 @@ Field names
 (program
   name: (identifier))
 
+name: (identifier)
+
+name: [
+  (identifier)
+  (expression)
+]
+
 --------------------------------------------------------------------------------
 
 (program
@@ -100,7 +107,52 @@ Field names
     (field_definition
       name: (identifier)
       (named_node
+        name: (identifier))))
+  (field_definition
+    name: (identifier)
+    (named_node
+      name: (identifier)))
+  (field_definition
+    name: (identifier)
+    (list
+      (named_node
+        name: (identifier))
+      (named_node
         name: (identifier)))))
+
+================================================================================
+Negated fields
+================================================================================
+
+(program
+  field: (identifier) @capture
+  !negated-field)
+
+(program
+  (identifier) @capture
+  !negated-field)
+
+--------------------------------------------------------------------------------
+
+(program
+  (named_node
+    (identifier)
+    (field_definition
+      (identifier)
+      (named_node
+        (identifier)
+        (capture
+          (identifier))))
+    (negated_field
+      (identifier)))
+  (named_node
+    (identifier)
+    (named_node
+      (identifier)
+      (capture
+        (identifier)))
+    (negated_field
+      (identifier))))
 
 ================================================================================
 Quantifiers (+)
@@ -251,7 +303,7 @@ Predicates
 
 (
   (identifier) @v
-  (eq? @v "test" local)
+  (#eq? @v "test" local)
 )
 
 --------------------------------------------------------------------------------

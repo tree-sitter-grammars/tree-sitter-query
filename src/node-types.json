@@ -83,6 +83,10 @@
           "named": true
         },
         {
+          "type": "field_definition",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -126,6 +130,10 @@
         },
         {
           "type": "capture",
+          "named": true
+        },
+        {
+          "type": "field_definition",
           "named": true
         },
         {
@@ -270,7 +278,26 @@
           "named": true
         },
         {
+          "type": "negated_field",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "negated_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -304,9 +331,13 @@
     "named": true,
     "fields": {
       "name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "#",
+            "named": false
+          },
           {
             "type": "identifier",
             "named": true
@@ -336,11 +367,6 @@
     }
   },
   {
-    "type": "predicate_type",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "program",
     "named": true,
     "fields": {},
@@ -350,6 +376,10 @@
       "types": [
         {
           "type": "anonymous_node",
+          "named": true
+        },
+        {
+          "type": "field_definition",
           "named": true
         },
         {
@@ -397,6 +427,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
     "named": false
   },
   {
@@ -449,6 +483,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "predicate_type",
     "named": true
   }
 ]
