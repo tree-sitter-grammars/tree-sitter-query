@@ -5,7 +5,7 @@ version = "0.0.1"
 keywords = ["incremental", "parsing", "query"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/nvim-treesitter/tree-sitter-query"
-edition = "2018"
+edition = "2021"
 
 build = "bindings/rust/build.rs"
 include = [
@@ -19,7 +19,7 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "0.19"
+tree-sitter = "0.20.9"
 
 [build-dependencies]
 cc = "1.0"
