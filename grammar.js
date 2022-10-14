@@ -72,7 +72,7 @@ module.exports = grammar({
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat(choice($._definition)), "]", quantifier($), captures($)),
+    list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
@@ -127,7 +127,7 @@ module.exports = grammar({
 });
 
 function captures($) {
-  return optional(repeat($.capture));
+  return repeat($.capture);
 }
 
 function quantifier($) {
