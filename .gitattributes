@@ -1,0 +1,6 @@
+* text eol=lf
+
+src/** linguist-generated
+bindings/** linguist-generated
+binding.gyp linguist-generated
+Cargo.toml linguist-generated
