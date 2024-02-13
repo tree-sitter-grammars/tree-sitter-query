@@ -324,7 +324,7 @@ Predicates
         (identifier)))))
 
 ================================================================================
-Immediate Child Operator
+Anchor Operator
 ================================================================================
 
 ((comment) . (function_declaration))
@@ -366,6 +366,8 @@ Immediate Child Operator
 (node . name: (identifier) . another: (identifier))
 (node name: (identifier) . another: (identifier) .)
 (node name: (identifier) . another: (identifier))
+
+(trailing_anchor ((grouping_anchor) .) .)
 
 --------------------------------------------------------------------------------
 
@@ -587,6 +589,11 @@ Immediate Child Operator
         name: (identifier)))
     (field_definition
       name: (identifier)
+      (named_node
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (grouping
       (named_node
         name: (identifier)))))
 
