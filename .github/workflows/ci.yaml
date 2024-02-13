@@ -1,15 +1,18 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
       - run: npm ci
-      - run: npm run test
-      - run: echo ./node_modules/.bin/ >> $GITHUB_PATH
+      - run: npm test
       - run: make clean download-examples parse-examples
+        env:
+          TS: node_modules/.bin/tree-sitter
