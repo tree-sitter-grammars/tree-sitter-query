@@ -1,10 +1,22 @@
+TS ?= tree-sitter
+
+.DEFAULT_GOAL := parser/query.so
+
+parser/query.so: src/parser.c
+	mkdir -p parser
+	$(CC) -o $@ -Isrc $^ -shared -fPIC -Os
+
+src/parser.c: grammar.js
+	$(TS) generate --no-bindings
+
 download-examples: clean
-	./scripts/download-examples.sh
+	git clone --filter=blob:none --single-branch https://github.com/nvim-treesitter/nvim-treesitter .tests/nvim-treesitter
+	git clone --filter=blob:none --single-branch https://github.com/nvim-treesitter/nvim-treesitter-textobjects .tests/nvim-treesitter-textobjects
 
 parse-examples:
-	tree-sitter parse -q .tests/*/queries/**/*.query
+	$(TS) parse -q .tests/*/queries/**/*.scm
 
 clean:
-	rm -rf .tests
+	$(RM) -r .tests parser
 
 .PHONY: clean download-examples parse-examples
