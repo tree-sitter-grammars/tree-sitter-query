@@ -76,7 +76,7 @@ module.exports = grammar({
 
     grouping: $ => seq(
       "(",
-      repeat($._group_expression),
+      repeat(seq($._group_expression, optional("."))),
       ")",
       quantifier($),
       captures($),
@@ -105,7 +105,7 @@ module.exports = grammar({
       ),
       ")",
       quantifier($),
-      captures($)
+      captures($),
     ),
     _field_name: $ => seq($.identifier, ":"),
     field_definition: $ => seq(
