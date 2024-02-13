@@ -1,21 +1,20 @@
 [package]
 name = "tree-sitter-query"
 description = "query grammar for the tree-sitter parsing library"
-version = "0.1.0"
+version = "0.2.0"
 keywords = ["incremental", "parsing", "query"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/nvim-treesitter/tree-sitter-query"
-homepage = "https://github.com/nvim-treesitter/tree-sitter-query"
+repository = "https://github.com/tree-sitter-grammars/tree-sitter-query"
+homepage = "https://github.com/tree-sitter-grammars/tree-sitter-query"
 edition = "2021"
 readme = "README.md"
-authors = ["nvim-treesitter"]
+authors = ["Steven Sojka", "Stephan Seitz"]
 license = "Apache-2.0"
 
 build = "bindings/rust/build.rs"
 include = [
   "bindings/rust/*",
   "grammar.js",
-  "queries/*",
   "src/*",
 ]
 
@@ -23,7 +22,7 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "0.20.9"
+tree-sitter = "~0.20.10"
 
 [build-dependencies]
-cc = "1.0"
+cc = "^1.0"
