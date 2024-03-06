@@ -1,35 +1,49 @@
 {
   "name": "tree-sitter-query",
   "version": "0.2.0",
-  "description": "A tree-sitter parser for tree-sitter query files",
+  "description": "TS query grammar for tree-sitter",
   "repository": "tree-sitter-grammars/tree-sitter-query",
+  "author": "Steven Sojka",
+  "maintainers": [
+    "Stephan Seitz"
+  ],
+  "license": "Apache-2.0",
   "main": "bindings/node",
+  "types": "bindings/node",
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "query"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "types/dsl.d.ts",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
+  "dependencies": {
+    "node-addon-api": "^7.1.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.21.0"
+  },
   "scripts": {
-    "build": "tree-sitter generate",
+    "build": "tree-sitter generate --no-bindings",
     "test": "tree-sitter test",
     "wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
     "web": "tree-sitter web-ui"
   },
-  "author": "Steven Sojka",
-  "maintainers": ["Stephan Seitz"],
-  "license": "Apache-2.0",
-  "keywords": [
-    "tree-sitter",
-    "parser",
-    "lexer",
-    "query"
-  ],
-  "dependencies": {
-    "nan": "^2.18.0"
-  },
-  "devDependencies": {
-    "tree-sitter-cli": "~0.20.8"
-  },
   "tree-sitter": [
     {
       "scope": "source.query",
-      "file-types": ["scm"]
+      "injection-regex": "^query$",
+      "file-types": [
+        "scm"
+      ]
     }
   ]
 }
