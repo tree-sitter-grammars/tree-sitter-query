@@ -3,16 +3,51 @@ name: CI
 on:
   push:
     branches: [master]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
   pull_request:
-    branches: [master]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Test parser
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
     steps:
-      - uses: actions/checkout@v4
-      - run: npm ci
-      - run: npm test
-      - run: make clean download-examples parse-examples
-        env:
-          TS: node_modules/.bin/tree-sitter
+      - name: Set up repository
+        uses: tree-sitter/parser-setup-action@v1.1
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+      - name: Clone nvim-treesitter corpus
+        uses: actions/checkout@v4
+        with:
+          repository: nvim-treesitter/nvim-treesitter
+          path: .tests/nvim-treesitter
+          sparse-checkout: queries/
+      - name: Clone nvim-treesitter-textobjects corpus
+        uses: actions/checkout@v4
+        with:
+          repository: nvim-treesitter/nvim-treesitter-textobjects
+          path: .tests/nvim-treesitter-textobjects
+          sparse-checkout: queries/
+      - name: Run tests
+        uses: tree-sitter/parser-test-action@v1.2
+        with:
+          test-library: ${{runner.os == 'Linux'}}
+          corpus-files: .tests/*/queries/*/*.scm
