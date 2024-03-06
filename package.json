@@ -21,7 +21,7 @@
     "binding.gyp",
     "types/dsl.d.ts",
     "bindings/node/*",
-    "queries/*",
+    "queries/**",
     "src/**"
   ],
   "dependencies": {
@@ -41,6 +41,8 @@
     {
       "scope": "source.query",
       "injection-regex": "^query$",
+      "highlights": "queries/query/highlights.scm",
+      "injections": "queries/query/injections.scm",
       "file-types": [
         "scm"
       ]
