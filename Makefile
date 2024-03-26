@@ -28,8 +28,8 @@ LIBDIR ?= $(PREFIX)/lib
 PCLIBDIR ?= $(LIBDIR)/pkgconfig
 
 # source/object files
-SRCS := $(wildcard $(SRC_DIR)/*.c)
-OBJS := $(patsubst %.c,%.o,$(SRCS))
+PARSER := $(SRC_DIR)/parser.c
+OBJS := $(PARSER:.c=.o)
 
 # flags
 ARFLAGS := rcs
@@ -82,8 +82,8 @@ $(LANGUAGE_NAME).pc: bindings/c/$(LANGUAGE_NAME).pc.in
 		-e 's|=$(PREFIX)|=$${prefix}|' \
 		-e 's|@PREFIX@|$(PREFIX)|' $< > $@
 
-$(SRC_DIR)/parser.c: grammar.js
-	$(TS) generate --no-bindings
+$(PARSER): $(SRC_DIR)/grammar.json
+	$(TS) generate --no-bindings $^
 
 install: all
 	install -Dm644 bindings/c/$(LANGUAGE_NAME).h '$(DESTDIR)$(INCLUDEDIR)'/tree_sitter/$(LANGUAGE_NAME).h
@@ -109,13 +109,19 @@ test: .tests/nvim-treesitter .tests/nvim-treesitter-textobjects
 	$(TS) test
 	$(TS) parse -q -s .tests/*/queries/*/*.scm
 
-parser/query.so: CFLAGS += -Os -shared
-parser/query.so: $(SRCS)
+parser/query.so: $(PARSER)
 	@mkdir -p parser
-	$(CC) $(CFLAGS) $^ -o $@
+	$(TS) build -o $@
 
 .tests/%:
 	git clone --sparse --single-branch https://github.com/nvim-treesitter/$(@F) $@
 	git -C $@ sparse-checkout set queries
 
-.PHONY: all install uninstall clean test
+update: VERSION := $(shell awk -F '"' '/^  "version"/{print $$4}' package.json)
+update:
+	sed -i Makefile -e 's/^VERSION := .*/VERSION := $(VERSION)/'
+	sed -i Cargo.toml -e 's/^version = .*/version = "$(VERSION)"/'
+	sed -i pyproject.toml -e 's/^version = .*/version = "$(VERSION)"/'
+	git add package.json package-lock.json Cargo.toml pyproject.toml Makefile
+
+.PHONY: all install uninstall clean test update
