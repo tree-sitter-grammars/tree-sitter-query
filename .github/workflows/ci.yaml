@@ -30,10 +30,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
-      - name: Set up repository
-        uses: tree-sitter/parser-setup-action@v1.1
-        with:
-          node-version: ${{vars.NODE_VERSION}}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v1
       - name: Clone nvim-treesitter corpus
         uses: actions/checkout@v4
         with:
@@ -47,7 +47,10 @@ jobs:
           path: .tests/nvim-treesitter-textobjects
           sparse-checkout: queries/
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v1.2
+        uses: tree-sitter/parser-test-action@v2
         with:
-          test-library: ${{runner.os == 'Linux'}}
-          corpus-files: .tests/*/queries/*/*.scm
+          test-rust: ${{runner.os == 'Linux'}}
+      - name: Parse files
+        uses: tree-sitter/parse-action@v4
+        with:
+          files: .tests/*/queries/*/*.scm
