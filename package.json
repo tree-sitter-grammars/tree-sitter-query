@@ -51,7 +51,8 @@
     "prestart": "tree-sitter build --wasm -o tree-sitter-query.wasm",
     "start": "tree-sitter playground",
     "test": "make test",
-    "version": "make -s update"
+    "version": "make -s update",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "tree-sitter": [
     {
