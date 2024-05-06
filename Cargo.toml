@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-query"
 description = "TS query grammar for tree-sitter"
-version = "0.2.1"
+version = "0.3.0"
 license = "Apache-2.0"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "query"]

@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-query",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "TS query grammar for tree-sitter",
   "repository": "tree-sitter-grammars/tree-sitter-query",
   "author": "Steven Sojka",
@@ -37,7 +37,7 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.22.2",
+    "tree-sitter-cli": "^0.22.6",
     "prebuildify": "^6.0.0"
   },
   "overrides": {
