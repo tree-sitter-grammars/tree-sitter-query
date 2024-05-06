@@ -193,7 +193,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9.\\-_\\$]+"
+      "value": "[a-zA-Z0-9.\\-_\\$\\/]+"
     },
     "_immediate_identifier": {
       "type": "ALIAS",
@@ -201,7 +201,7 @@
         "type": "IMMEDIATE_TOKEN",
         "content": {
           "type": "PATTERN",
-          "value": "[a-zA-Z0-9.\\-_\\$]+"
+          "value": "[a-zA-Z0-9.\\-_\\$\\/]+"
         }
       },
       "named": true,
