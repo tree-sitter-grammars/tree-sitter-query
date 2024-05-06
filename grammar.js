@@ -10,8 +10,7 @@ const PREC = {
   WILDCARD_NODE: 1,
 };
 
-// todo(clason): replace '/' with proper support for supertype nodes
-const IDENTIFIER = /[a-zA-Z0-9.\-_\$\/]+/;
+const IDENTIFIER = /[a-zA-Z0-9.\-_\$]+/;
 
 module.exports = grammar({
   name: "query",
@@ -93,7 +92,10 @@ module.exports = grammar({
 
     named_node: $ => seq(
       "(",
-      field("name", $._node_identifier),
+      choice(
+        field("name", $._node_identifier),
+        seq(field("supertype", $.identifier), token.immediate('/'), field("name", $._immediate_identifier)),
+      ),
       optional(
         seq(
           optional("."),

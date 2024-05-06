@@ -684,3 +684,27 @@ Comments
   (named_node
     name: (identifier)
     (comment)))
+
+================================================================================
+Supertypes
+================================================================================
+
+(program
+  (named_node
+    name: (identifier)
+    (supertype/subtype)))
+
+--------------------------------------------------------------------------------
+
+(program
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      (field_definition
+        name: (identifier)
+        (named_node
+          name: (identifier)))
+      (named_node
+        supertype: (identifier)
+        name: (identifier)))))
