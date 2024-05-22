@@ -20,10 +20,14 @@ module.exports = grammar({
     /\s+/,
   ],
 
-  rules: {
-    program: $ => repeat($._definition),
+  supertypes: $ => [
+    $.definition,
+  ],
 
-    _definition: $ => choice(
+  rules: {
+    program: $ => repeat($.definition),
+
+    definition: $ => choice(
       $.named_node,
       $.anonymous_node,
       $.grouping,
@@ -34,13 +38,13 @@ module.exports = grammar({
 
     // Expressions that are valid inside a group.
     _group_expression: $ => choice(
-      $._definition,
+      $.definition,
       immediate_child($._group_expression),
     ),
 
     // Expressions that are valid inside a named node.
     _named_node_expression: $ => choice(
-      $._definition,
+      $.definition,
       $.negated_field,
       immediate_child($._named_node_expression),
     ),
@@ -54,7 +58,7 @@ module.exports = grammar({
       '"',
     ),
     // Taken from https://github.com/tree-sitter/tree-sitter-javascript/blob/3f8b62f9befd3cb3b4cb0de22f6595a0aadf76ca/grammar.js#L827
-    escape_sequence: $ => token.immediate(seq(
+    escape_sequence: _ => token.immediate(seq(
       '\\',
       choice(
         /[^xu0-7]/,
@@ -65,16 +69,16 @@ module.exports = grammar({
       )
     )),
 
-    quantifier: $ => choice("*", "+", "?"),
+    quantifier: _ => choice("*", "+", "?"),
 
-    identifier: $ => IDENTIFIER,
+    identifier: _ => IDENTIFIER,
     _immediate_identifier: $ => alias(token.immediate(IDENTIFIER), $.identifier),
     _node_identifier: $ => choice($.identifier, prec(PREC.WILDCARD_NODE, "_")),
     capture: $ => seq("@", field("name", $._immediate_identifier)),
     string: $ => $._string,
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
-    comment: $ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat($._definition), "]", quantifier($), captures($)),
+    comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
 
     grouping: $ => seq(
       "(",
@@ -115,7 +119,7 @@ module.exports = grammar({
     _field_name: $ => seq($.identifier, ":"),
     field_definition: $ => seq(
       field("name", $._field_name),
-      $._definition,
+      $.definition,
     ),
 
     negated_field: $ => seq("!", $.identifier),
@@ -127,7 +131,7 @@ module.exports = grammar({
         field("parameters", $.parameters),
         ")"
       ),
-    predicate_type: $ => token.immediate(choice("?", "!")),
+    predicate_type: _ => token.immediate(choice("?", "!")),
   }
 });
 
