@@ -5,10 +5,10 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "_definition"
+        "name": "definition"
       }
     },
-    "_definition": {
+    "definition": {
       "type": "CHOICE",
       "members": [
         {
@@ -42,7 +42,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         },
         {
           "type": "PREC_LEFT",
@@ -72,7 +72,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         },
         {
           "type": "SYMBOL",
@@ -296,7 +296,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_definition"
+            "name": "definition"
           }
         },
         {
@@ -603,7 +603,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         }
       ]
     },
@@ -697,5 +697,7 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [
+    "definition"
+  ]
 }
