@@ -1,5 +1,65 @@
 [
   {
+    "type": "definition",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "alternation",
+        "named": true
+      },
+      {
+        "type": "anonymous_node",
+        "named": true
+      },
+      {
+        "type": "field_definition",
+        "named": true
+      },
+      {
+        "type": "grouping",
+        "named": true
+      },
+      {
+        "type": "named_node",
+        "named": true
+      },
+      {
+        "type": "predicate",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "alternation",
+    "named": true,
+    "fields": {
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "capture",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "anonymous_node",
     "named": true,
     "fields": {
@@ -12,7 +72,7 @@
             "named": false
           },
           {
-            "type": "identifier",
+            "type": "string",
             "named": true
           }
         ]
@@ -79,27 +139,7 @@
       "required": true,
       "types": [
         {
-          "type": "anonymous_node",
-          "named": true
-        },
-        {
-          "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "named_node",
-          "named": true
-        },
-        {
-          "type": "predicate",
+          "type": "definition",
           "named": true
         }
       ]
@@ -125,96 +165,11 @@
       "required": false,
       "types": [
         {
-          "type": "anonymous_node",
-          "named": true
-        },
-        {
           "type": "capture",
           "named": true
         },
         {
-          "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "named_node",
-          "named": true
-        },
-        {
-          "type": "predicate",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "list",
-    "named": true,
-    "fields": {
-      "quantifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "quantifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "anonymous_node",
-          "named": true
-        },
-        {
-          "type": "capture",
-          "named": true
-        },
-        {
-          "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "named_node",
-          "named": true
-        },
-        {
-          "type": "predicate",
+          "type": "definition",
           "named": true
         }
       ]
@@ -264,35 +219,15 @@
       "required": false,
       "types": [
         {
-          "type": "anonymous_node",
-          "named": true
-        },
-        {
           "type": "capture",
           "named": true
         },
         {
-          "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "named_node",
+          "type": "definition",
           "named": true
         },
         {
           "type": "negated_field",
-          "named": true
-        },
-        {
-          "type": "predicate",
           "named": true
         }
       ]
@@ -385,27 +320,7 @@
       "required": false,
       "types": [
         {
-          "type": "anonymous_node",
-          "named": true
-        },
-        {
-          "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "grouping",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "named_node",
-          "named": true
-        },
-        {
-          "type": "predicate",
+          "type": "definition",
           "named": true
         }
       ]
@@ -418,6 +333,21 @@
   },
   {
     "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_content",
     "named": true,
     "fields": {},
     "children": {
@@ -497,6 +427,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {

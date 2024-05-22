@@ -6,7 +6,7 @@
   (identifier) @type)
 
 (anonymous_node
-  (identifier) @string)
+  (string) @string)
 
 (predicate
   name: (identifier) @function.call)
