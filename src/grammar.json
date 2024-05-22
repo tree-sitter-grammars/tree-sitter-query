@@ -5,10 +5,10 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "_definition"
+        "name": "definition"
       }
     },
-    "_definition": {
+    "definition": {
       "type": "CHOICE",
       "members": [
         {
@@ -29,7 +29,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "list"
+          "name": "alternation"
         },
         {
           "type": "SYMBOL",
@@ -42,7 +42,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         },
         {
           "type": "PREC_LEFT",
@@ -72,7 +72,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         },
         {
           "type": "SYMBOL",
@@ -98,42 +98,6 @@
               }
             ]
           }
-        }
-      ]
-    },
-    "_string": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "IMMEDIATE_TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 2,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[^\"\\\\]+"
-                  }
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "escape_sequence"
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "\""
         }
       ]
     },
@@ -242,8 +206,52 @@
       ]
     },
     "string": {
-      "type": "SYMBOL",
-      "name": "_string"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
+    "string_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 2,
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\"\\\\]+"
+              }
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "escape_sequence"
+          }
+        ]
+      }
     },
     "parameters": {
       "type": "REPEAT1",
@@ -285,7 +293,7 @@
         }
       }
     },
-    "list": {
+    "alternation": {
       "type": "SEQ",
       "members": [
         {
@@ -296,7 +304,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_definition"
+            "name": "definition"
           }
         },
         {
@@ -398,13 +406,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_string"
-                },
-                "named": true,
-                "value": "identifier"
+                "type": "SYMBOL",
+                "name": "string"
               },
               {
                 "type": "STRING",
@@ -603,7 +606,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_definition"
+          "name": "definition"
         }
       ]
     },
@@ -697,5 +700,7 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [
+    "definition"
+  ]
 }
