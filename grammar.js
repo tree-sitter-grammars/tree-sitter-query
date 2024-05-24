@@ -49,14 +49,6 @@ module.exports = grammar({
       immediate_child($._named_node_expression),
     ),
 
-    _string: $ => seq(
-      '"',
-      repeat(choice(
-        token.immediate(prec(PREC.STRING, /[^"\\]+/)),
-        $.escape_sequence,
-      )),
-      '"',
-    ),
     // Taken from https://github.com/tree-sitter/tree-sitter-javascript/blob/3f8b62f9befd3cb3b4cb0de22f6595a0aadf76ca/grammar.js#L827
     escape_sequence: _ => token.immediate(seq(
       '\\',
@@ -75,7 +67,12 @@ module.exports = grammar({
     _immediate_identifier: $ => alias(token.immediate(IDENTIFIER), $.identifier),
     _node_identifier: $ => choice($.identifier, prec(PREC.WILDCARD_NODE, "_")),
     capture: $ => seq("@", field("name", $._immediate_identifier)),
-    string: $ => $._string,
+    string: $ => seq(
+      '"',
+      optional($.string_content),
+      '"',
+    ),
+    string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat($.definition), "]", quantifier($), captures($)),
@@ -89,7 +86,7 @@ module.exports = grammar({
     ),
 
     anonymous_node: $ => seq(
-      field("name", choice(alias($._string, $.identifier), "_")),
+      field("name", choice(alias($.string, $.identifier), "_")),
       quantifier($),
       captures($),
     ),
