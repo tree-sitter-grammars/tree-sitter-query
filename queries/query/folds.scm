@@ -2,5 +2,5 @@
   (named_node)
   (predicate)
   (grouping)
-  (list)
+  (alternation)
 ] @fold

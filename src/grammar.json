@@ -29,7 +29,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "list"
+          "name": "alternation"
         },
         {
           "type": "SYMBOL",
@@ -293,7 +293,7 @@
         }
       }
     },
-    "list": {
+    "alternation": {
       "type": "SEQ",
       "members": [
         {

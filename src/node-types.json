@@ -4,6 +4,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "alternation",
+        "named": true
+      },
+      {
         "type": "anonymous_node",
         "named": true
       },
@@ -16,10 +20,6 @@
         "named": true
       },
       {
-        "type": "list",
-        "named": true
-      },
-      {
         "type": "named_node",
         "named": true
       },
@@ -28,6 +28,36 @@
         "named": true
       }
     ]
+  },
+  {
+    "type": "alternation",
+    "named": true,
+    "fields": {
+      "quantifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "capture",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "anonymous_node",
@@ -155,36 +185,6 @@
       "types": [
         {
           "type": "string_content",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "list",
-    "named": true,
-    "fields": {
-      "quantifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "quantifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "capture",
-          "named": true
-        },
-        {
-          "type": "definition",
           "named": true
         }
       ]
