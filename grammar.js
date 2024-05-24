@@ -86,7 +86,7 @@ module.exports = grammar({
     ),
 
     anonymous_node: $ => seq(
-      field("name", choice(alias($.string, $.identifier), "_")),
+      field("name", choice($.string, "_")),
       quantifier($),
       captures($),
     ),

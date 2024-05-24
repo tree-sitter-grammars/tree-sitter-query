@@ -25,10 +25,10 @@ Anonymous nodes
   (named_node
     name: (identifier))
   (anonymous_node
-    name: (identifier
+    name: (string
       (string_content)))
   (anonymous_node
-    name: (identifier
+    name: (string
       (string_content))))
 
 ================================================================================
@@ -42,10 +42,10 @@ Anonymous nodes (series)
 (program
   (grouping
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))))
 
 ================================================================================
@@ -229,7 +229,7 @@ Groups
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier
+        name: (string
           (string_content))))))
 
 ================================================================================
@@ -277,13 +277,13 @@ Lists
 (program
   (list
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (capture
       name: (identifier)))
@@ -388,26 +388,26 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
   (grouping
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content))))
   (grouping
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content))))
   (grouping
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
@@ -418,7 +418,7 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier
+        name: (string
           (string_content))))
     (named_node
       name: (identifier)))
@@ -429,7 +429,7 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier
+        name: (string
           (string_content))))
     (named_node
       name: (identifier)))
@@ -440,7 +440,7 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier
+        name: (string
           (string_content))))
     (named_node
       name: (identifier)))
@@ -451,23 +451,23 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier
-          (string_content))))
-    (list
-      (named_node
-        name: (identifier))))
-  (grouping
-    (named_node
-      name: (identifier))
-    (list
-      (named_node
-        name: (identifier))
-      (anonymous_node
-        name: (identifier
+        name: (string
           (string_content))))
     (list
       (named_node
         name: (identifier))))
+  (grouping
+    (named_node
+      name: (identifier))
+    (list
+      (named_node
+        name: (identifier))
+      (anonymous_node
+        name: (string
+          (string_content))))
+    (list
+      (named_node
+        name: (identifier))))
   (named_node
     name: (identifier)
     (named_node
@@ -483,27 +483,27 @@ Anchor Operator
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content))))
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content))))
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content))))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
@@ -512,7 +512,7 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
@@ -521,7 +521,7 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
@@ -530,7 +530,7 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier
+      name: (string
         (string_content)))
     (named_node
       name: (identifier)))
