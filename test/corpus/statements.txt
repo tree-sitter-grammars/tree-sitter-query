@@ -118,7 +118,7 @@ name: [
       name: (identifier)))
   (field_definition
     name: (identifier)
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (named_node
@@ -225,7 +225,7 @@ Groups
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
@@ -275,7 +275,7 @@ Lists
 --------------------------------------------------------------------------------
 
 (program
-  (list
+  (alternation
     (anonymous_node
       name: (identifier
         (string_content)))
@@ -289,7 +289,7 @@ Lists
       name: (identifier)))
   (named_node
     name: (identifier)
-    (list
+    (alternation
       (field_definition
         name: (identifier)
         (named_node))
@@ -414,7 +414,7 @@ Anchor Operator
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
@@ -425,7 +425,7 @@ Anchor Operator
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
@@ -436,7 +436,7 @@ Anchor Operator
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
@@ -447,25 +447,25 @@ Anchor Operator
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
         name: (identifier
           (string_content))))
-    (list
+    (alternation
       (named_node
         name: (identifier))))
   (grouping
     (named_node
       name: (identifier))
-    (list
+    (alternation
       (named_node
         name: (identifier))
       (anonymous_node
         name: (identifier
           (string_content))))
-    (list
+    (alternation
       (named_node
         name: (identifier))))
   (named_node

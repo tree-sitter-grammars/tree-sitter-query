@@ -32,7 +32,7 @@ module.exports = grammar({
       $.anonymous_node,
       $.grouping,
       $.predicate,
-      $.list,
+      $.alternation,
       $.field_definition,
     ),
 
@@ -75,7 +75,7 @@ module.exports = grammar({
     string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat($.definition), "]", quantifier($), captures($)),
+    alternation: $ => seq("[", repeat($.definition), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
