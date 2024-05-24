@@ -25,9 +25,11 @@ Anonymous nodes
   (named_node
     name: (identifier))
   (anonymous_node
-    name: (identifier))
+    name: (identifier
+      (string_content)))
   (anonymous_node
-    name: (identifier)))
+    name: (identifier
+      (string_content))))
 
 ================================================================================
 Anonymous nodes (series)
@@ -40,9 +42,11 @@ Anonymous nodes (series)
 (program
   (grouping
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (anonymous_node
-      name: (identifier))))
+      name: (identifier
+        (string_content)))))
 
 ================================================================================
 Wildcard nodes
@@ -225,7 +229,8 @@ Groups
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))))
+        name: (identifier
+          (string_content))))))
 
 ================================================================================
 Captures
@@ -272,11 +277,14 @@ Lists
 (program
   (list
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (capture
       name: (identifier)))
   (named_node
@@ -318,7 +326,8 @@ Predicates
       parameters: (parameters
         (capture
           name: (identifier))
-        (string)
+        (string
+          (string_content))
         (identifier)))))
 
 ================================================================================
@@ -379,22 +388,27 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (named_node
       name: (identifier)))
   (grouping
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (anonymous_node
-      name: (identifier)))
+      name: (identifier
+        (string_content))))
   (grouping
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier)))
+      name: (identifier
+        (string_content))))
   (grouping
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (named_node
       name: (identifier)))
   (grouping
@@ -404,7 +418,8 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))
+        name: (identifier
+          (string_content))))
     (named_node
       name: (identifier)))
   (grouping
@@ -414,7 +429,8 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))
+        name: (identifier
+          (string_content))))
     (named_node
       name: (identifier)))
   (grouping
@@ -424,7 +440,8 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))
+        name: (identifier
+          (string_content))))
     (named_node
       name: (identifier)))
   (grouping
@@ -434,7 +451,8 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))
+        name: (identifier
+          (string_content))))
     (list
       (named_node
         name: (identifier))))
@@ -445,7 +463,8 @@ Anchor Operator
       (named_node
         name: (identifier))
       (anonymous_node
-        name: (identifier)))
+        name: (identifier
+          (string_content))))
     (list
       (named_node
         name: (identifier))))
@@ -464,39 +483,28 @@ Anchor Operator
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier)))
+      name: (identifier
+        (string_content))))
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier)))
+      name: (identifier
+        (string_content))))
   (named_node
     name: (identifier)
     (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (anonymous_node
-      name: (identifier)))
-  (named_node
-    name: (identifier)
-    (named_node
-      name: (identifier))
-    (anonymous_node
-      name: (identifier))
-    (named_node
-      name: (identifier)))
+      name: (identifier
+        (string_content))))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier))
     (anonymous_node
-      name: (identifier))
-    (named_node
-      name: (identifier)))
-  (named_node
-    name: (identifier)
-    (named_node
-      name: (identifier))
-    (anonymous_node
-      name: (identifier))
+      name: (identifier
+        (string_content)))
     (named_node
       name: (identifier)))
   (named_node
@@ -504,7 +512,26 @@ Anchor Operator
     (named_node
       name: (identifier))
     (anonymous_node
+      name: (identifier
+        (string_content)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
       name: (identifier))
+    (anonymous_node
+      name: (identifier
+        (string_content)))
+    (named_node
+      name: (identifier)))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier))
+    (anonymous_node
+      name: (identifier
+        (string_content)))
     (named_node
       name: (identifier)))
   (named_node
@@ -619,7 +646,8 @@ Strings
       parameters: (parameters
         (capture
           name: (identifier))
-        (string)))
+        (string
+          (string_content))))
     (predicate
       name: (identifier)
       type: (predicate_type)
@@ -627,7 +655,8 @@ Strings
         (capture
           name: (identifier))
         (string
-          (escape_sequence))))
+          (string_content
+            (escape_sequence)))))
     (predicate
       name: (identifier)
       type: (predicate_type)
@@ -635,8 +664,9 @@ Strings
         (capture
           name: (identifier))
         (string
-          (escape_sequence)
-          (escape_sequence))))
+          (string_content
+            (escape_sequence)
+            (escape_sequence)))))
     (predicate
       name: (identifier)
       type: (predicate_type)
@@ -644,7 +674,8 @@ Strings
         (capture
           name: (identifier))
         (string
-          (escape_sequence))))))
+          (string_content
+            (escape_sequence)))))))
 
 ================================================================================
 Comments
@@ -673,7 +704,8 @@ Comments
       (capture
         name: (identifier))
       (comment)
-      (string)))
+      (string
+        (string_content))))
   (named_node
     name: (identifier)
     (comment)
