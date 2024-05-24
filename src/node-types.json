@@ -42,7 +42,7 @@
             "named": false
           },
           {
-            "type": "identifier",
+            "type": "string",
             "named": true
           }
         ]
@@ -140,21 +140,6 @@
         },
         {
           "type": "definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "string_content",
           "named": true
         }
       ]
@@ -442,6 +427,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {
