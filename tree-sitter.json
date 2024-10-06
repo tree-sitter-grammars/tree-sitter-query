@@ -1,0 +1,40 @@
+{
+  "grammars": [
+    {
+      "name": "query",
+      "camelcase": "Query",
+      "scope": "source.query",
+      "path": ".",
+      "file-types": [
+        "scm"
+      ],
+      "highlights": "queries/query/highlights.scm",
+      "injections": "queries/query/injections.scm",
+      "injection-regex": "^query$"
+    }
+  ],
+  "metadata": {
+    "version": "0.4.0",
+    "license": "Apache-2.0",
+    "description": "TS query grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Steven Sojka"
+      },
+      {
+        "name": "Stephan Seitz"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-query"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -53,16 +53,5 @@
     "test": "make test",
     "version": "make -s update",
     "prebuildify": "prebuildify --napi --strip"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.query",
-      "injection-regex": "^query$",
-      "highlights": "queries/query/highlights.scm",
-      "injections": "queries/query/injections.scm",
-      "file-types": [
-        "scm"
-      ]
-    }
-  ]
+  }
 }
