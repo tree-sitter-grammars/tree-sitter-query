@@ -312,6 +312,9 @@ Predicates
 ((identifier) @v
   (#eq? @v "test" local))
 
+((identifier) @v
+  (.match? @v "test"))
+
 --------------------------------------------------------------------------------
 
 (program
@@ -328,7 +331,20 @@ Predicates
           name: (identifier))
         (string
           (string_content))
-        (identifier)))))
+        (identifier))))
+  (grouping
+    (named_node
+      name: (identifier)
+      (capture
+        name: (identifier)))
+    (predicate
+      name: (identifier)
+      type: (predicate_type)
+      parameters: (parameters
+        (capture
+          name: (identifier))
+        (string
+          (string_content))))))
 
 ================================================================================
 Anchor Operator
