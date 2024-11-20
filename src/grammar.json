@@ -158,7 +158,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9.\\-_\\$]+"
+      "value": "[a-zA-Z0-9\\-_\\$][a-zA-Z0-9.\\-_\\$]*"
     },
     "_immediate_identifier": {
       "type": "ALIAS",
@@ -166,7 +166,7 @@
         "type": "IMMEDIATE_TOKEN",
         "content": {
           "type": "PATTERN",
-          "value": "[a-zA-Z0-9.\\-_\\$]+"
+          "value": "[a-zA-Z0-9\\-_\\$][a-zA-Z0-9.\\-_\\$]*"
         }
       },
       "named": true,
@@ -638,8 +638,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "#"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "#"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  }
+                ]
               },
               {
                 "type": "SYMBOL",
