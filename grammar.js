@@ -31,6 +31,7 @@ module.exports = grammar({
     definition: $ => choice(
       $.named_node,
       $.anonymous_node,
+      $.missing_node,
       $.grouping,
       $.predicate,
       $.list,
@@ -84,6 +85,13 @@ module.exports = grammar({
       ")",
       quantifier($),
       captures($),
+    ),
+
+    missing_node: ($) => seq(
+      "(",
+      "MISSING",
+      optional(field("name", choice($.identifier, $.string))),
+      ")",
     ),
 
     anonymous_node: $ => seq(

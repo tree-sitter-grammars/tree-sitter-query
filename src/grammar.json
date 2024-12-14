@@ -22,6 +22,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "missing_node"
+        },
+        {
+          "type": "SYMBOL",
           "name": "grouping"
         },
         {
@@ -394,6 +398,48 @@
             "type": "SYMBOL",
             "name": "capture"
           }
+        }
+      ]
+    },
+    "missing_node": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": "MISSING"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
