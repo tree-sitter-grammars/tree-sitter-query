@@ -756,3 +756,26 @@ Supertypes
       (named_node
         supertype: (identifier)
         name: (identifier)))))
+
+================================================================================
+Missing keyword
+================================================================================
+
+(MISSING program)
+
+(MISSING)
+
+(program (named_node (MISSING identifier)))
+
+--------------------------------------------------------------------------------
+
+(program
+  (missing_node
+    name: (identifier))
+  (missing_node)
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      (missing_node
+        name: (identifier)))))
