@@ -20,6 +20,10 @@
         "named": true
       },
       {
+        "type": "missing_node",
+        "named": true
+      },
+      {
         "type": "named_node",
         "named": true
       },
@@ -176,6 +180,26 @@
     }
   },
   {
+    "type": "missing_node",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "named_node",
     "named": true,
     "fields": {
@@ -281,6 +305,10 @@
         "types": [
           {
             "type": "#",
+            "named": false
+          },
+          {
+            "type": ".",
             "named": false
           },
           {
@@ -408,6 +436,10 @@
   },
   {
     "type": "@",
+    "named": false
+  },
+  {
+    "type": "MISSING",
     "named": false
   },
   {

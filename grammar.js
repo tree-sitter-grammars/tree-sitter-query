@@ -10,7 +10,8 @@ const PREC = {
   WILDCARD_NODE: 1,
 };
 
-const IDENTIFIER = /[a-zA-Z0-9.\-_\$]+/;
+// Identifiers cannot start with `.`
+const IDENTIFIER = /[a-zA-Z0-9\-_\$][a-zA-Z0-9.\-_\$]*/;
 
 module.exports = grammar({
   name: "query",
@@ -30,6 +31,7 @@ module.exports = grammar({
     definition: $ => choice(
       $.named_node,
       $.anonymous_node,
+      $.missing_node,
       $.grouping,
       $.predicate,
       $.list,
@@ -85,6 +87,13 @@ module.exports = grammar({
       captures($),
     ),
 
+    missing_node: ($) => seq(
+      "(",
+      "MISSING",
+      field("name", optional(choice($.identifier, $.string))),
+      ")",
+    ),
+
     anonymous_node: $ => seq(
       field("name", choice($.string, "_")),
       quantifier($),
@@ -124,7 +133,7 @@ module.exports = grammar({
     predicate: $ =>
       seq(
         "(",
-        field("name", seq("#", $._immediate_identifier, field("type", $.predicate_type))),
+        field("name", seq(choice("#", "."), $._immediate_identifier, field("type", $.predicate_type))),
         field("parameters", $.parameters),
         ")"
       ),
