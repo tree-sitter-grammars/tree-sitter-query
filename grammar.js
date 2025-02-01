@@ -92,6 +92,8 @@ module.exports = grammar({
       "MISSING",
       optional(field("name", choice($.identifier, $.string))),
       ")",
+      quantifier($),
+      captures($),
     ),
 
     anonymous_node: $ => seq(
