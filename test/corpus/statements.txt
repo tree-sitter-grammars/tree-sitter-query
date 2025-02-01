@@ -761,21 +761,27 @@ Supertypes
 Missing keyword
 ================================================================================
 
-(MISSING program)
+(MISSING program) @prog
 
-(MISSING)
+(MISSING) @missing
 
-(program (named_node (MISSING identifier)))
+(program (named_node (MISSING identifier) @cap))
 
 --------------------------------------------------------------------------------
 
 (program
   (missing_node
-    name: (identifier))
-  (missing_node)
+    name: (identifier)
+    (capture
+      name: (identifier)))
+  (missing_node
+    (capture
+      name: (identifier)))
   (named_node
     name: (identifier)
     (named_node
       name: (identifier)
       (missing_node
-        name: (identifier)))))
+        name: (identifier)
+        (capture
+          name: (identifier))))))
