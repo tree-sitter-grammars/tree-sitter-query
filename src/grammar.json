@@ -781,5 +781,6 @@
   "inline": [],
   "supertypes": [
     "definition"
-  ]
+  ],
+  "reserved": {}
 }
