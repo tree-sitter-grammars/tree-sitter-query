@@ -77,11 +77,11 @@ module.exports = grammar({
     string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
-    list: $ => seq("[", repeat($.definition), "]", quantifier($), captures($)),
+    list: $ => seq("[", repeat1($.definition), "]", quantifier($), captures($)),
 
     grouping: $ => seq(
       "(",
-      repeat(seq($._group_expression, optional("."))),
+      repeat1(seq($._group_expression, optional("."))),
       ")",
       quantifier($),
       captures($),
