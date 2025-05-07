@@ -3,19 +3,9 @@ name: CI
 on:
   push:
     branches: [master]
-    paths:
-      - grammar.js
-      - src/**
-      - test/**
-      - bindings/**
-      - binding.gyp
   pull_request:
-    paths:
-      - grammar.js
-      - src/**
-      - test/**
-      - bindings/**
-      - binding.gyp
+    branches: [master]
+  workflow_dispatch:
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -30,27 +20,26 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
-      - name: Checkout repository
+      - name: Set up repository
         uses: actions/checkout@v4
+
       - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v1
-      - name: Clone nvim-treesitter corpus
+        uses: tree-sitter/setup-action@v2
+        with:
+          install-lib: false
+
+      - name: Run tests
+        uses: tree-sitter/parser-test-action@v2
+
+      - name: Clone nvim-treesitter runtime corpus
         uses: actions/checkout@v4
         with:
           repository: nvim-treesitter/nvim-treesitter
+          ref: main
           path: .tests/nvim-treesitter
-          sparse-checkout: queries/
-      - name: Clone nvim-treesitter-textobjects corpus
-        uses: actions/checkout@v4
-        with:
-          repository: nvim-treesitter/nvim-treesitter-textobjects
-          path: .tests/nvim-treesitter-textobjects
-          sparse-checkout: queries/
-      - name: Run tests
-        uses: tree-sitter/parser-test-action@v2
-        with:
-          test-rust: ${{runner.os == 'Linux'}}
-      - name: Parse files
+          sparse-checkout: runtime/queries
+
+      - name: Parse corpus
         uses: tree-sitter/parse-action@v4
         with:
-          files: .tests/*/queries/*/*.scm
+          files: .tests/nvim-treesitter/runtime/queries/*/*.scm
