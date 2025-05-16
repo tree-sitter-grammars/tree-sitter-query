@@ -72,7 +72,7 @@ module.exports = grammar({
     string: $ => seq(
       '"',
       optional($.string_content),
-      '"',
+      token.immediate('"'),
     ),
     string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\\n]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
