@@ -74,7 +74,7 @@ module.exports = grammar({
       optional($.string_content),
       '"',
     ),
-    string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\]+/)), $.escape_sequence)),
+    string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\\n]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $._node_identifier)),
     comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
     list: $ => seq("[", repeat1($.definition), "]", quantifier($), captures($)),
