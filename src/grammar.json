@@ -247,7 +247,7 @@
               "value": 2,
               "content": {
                 "type": "PATTERN",
-                "value": "[^\"\\\\]+"
+                "value": "[^\"\\\\\\n]+"
               }
             }
           },
