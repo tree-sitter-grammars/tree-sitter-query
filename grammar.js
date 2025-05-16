@@ -51,17 +51,8 @@ module.exports = grammar({
       immediate_child($._named_node_expression),
     ),
 
-    // Taken from https://github.com/tree-sitter/tree-sitter-javascript/blob/3f8b62f9befd3cb3b4cb0de22f6595a0aadf76ca/grammar.js#L827
-    escape_sequence: _ => token.immediate(seq(
-      '\\',
-      choice(
-        /[^xu0-7]/,
-        /[0-7]{1,3}/,
-        /x[0-9a-fA-F]{2}/,
-        /u[0-9a-fA-F]{4}/,
-        /u\{[0-9a-fA-F]+\}/
-      )
-    )),
+    // Taken from https://github.com/tree-sitter/tree-sitter/blob/4339b0fe05b264082bd159a77b21fc5d586c3a29/lib/src/query.c#L2056
+    escape_sequence: _ => token.immediate(seq('\\', /./)),
 
     quantifier: _ => choice("*", "+", "?"),
 
