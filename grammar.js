@@ -10,8 +10,8 @@ const PREC = {
   WILDCARD_NODE: 1,
 };
 
-// Identifiers cannot start with `.`
-const IDENTIFIER = /[a-zA-Z0-9\-_\$][a-zA-Z0-9.\-_\$]*/;
+// Identifiers cannot start with `.`, `?`, or `!`
+const IDENTIFIER = /[a-zA-Z0-9\-_][a-zA-Z0-9.\-_?!]*/;
 
 module.exports = grammar({
   name: "query",
@@ -23,6 +23,13 @@ module.exports = grammar({
 
   supertypes: $ => [
     $.definition,
+  ],
+
+  externals: $ => [
+    // A regular identifier which will NOT consume the final `?` or `!` that it
+    // sees, in order to capture it as a separate (predicate_type) node
+    $._predicate_name,
+    $._error_sentinel,
   ],
 
   rules: {
@@ -126,7 +133,7 @@ module.exports = grammar({
     predicate: $ =>
       seq(
         "(",
-        field("name", seq(choice("#", "."), $._immediate_identifier, field("type", $.predicate_type))),
+        field("name", seq(choice("#", "."), alias($._predicate_name, $.identifier), field("type", $.predicate_type))),
         field("parameters", $.parameters),
         ")"
       ),

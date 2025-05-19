@@ -48,4 +48,14 @@ name: (identifier)
 ((comment) . (function_declaration))
 ;          ^ @operator
 
+; weird example with ? in identifier (which is valid)
+((identifier) @v
+  (#eq?? @v "test" local))
+;  ^ @punctuation.special
+;   ^^^ @function.call
+;        ^ @punctuation.special
+;         ^ @type
+;           ^ @string
+;      ^ @punctuation.special
+
 ; vim:ft=query:

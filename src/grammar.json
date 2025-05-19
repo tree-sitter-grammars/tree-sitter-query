@@ -141,7 +141,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9\\-_\\$][a-zA-Z0-9.\\-_\\$]*"
+      "value": "[a-zA-Z0-9\\-_][a-zA-Z0-9.\\-_?!]*"
     },
     "_immediate_identifier": {
       "type": "ALIAS",
@@ -149,7 +149,7 @@
         "type": "IMMEDIATE_TOKEN",
         "content": {
           "type": "PATTERN",
-          "value": "[a-zA-Z0-9\\-_\\$][a-zA-Z0-9.\\-_\\$]*"
+          "value": "[a-zA-Z0-9\\-_][a-zA-Z0-9.\\-_?!]*"
         }
       },
       "named": true,
@@ -702,8 +702,13 @@
                 ]
               },
               {
-                "type": "SYMBOL",
-                "name": "_immediate_identifier"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_predicate_name"
+                },
+                "named": true,
+                "value": "identifier"
               },
               {
                 "type": "FIELD",
@@ -759,7 +764,16 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_predicate_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_error_sentinel"
+    }
+  ],
   "inline": [],
   "supertypes": [
     "definition"
