@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-query"
 description = "TS query grammar for tree-sitter"
-version = "0.6.1"
+version = "0.6.2"
 keywords = ["incremental", "parsing", "tree-sitter", "query"]
 classifiers = [
   "Intended Audience :: Developers",
@@ -23,7 +23,7 @@ readme = "README.md"
 Homepage = "https://github.com/tree-sitter-grammars/tree-sitter-query"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.24"]
+core = ["tree-sitter~=0.25"]
 
 [tool.cibuildwheel]
 build = "cp310-*"
