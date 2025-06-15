@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-query"
 description = "TS query grammar for tree-sitter"
-version = "0.6.1"
+version = "0.6.2"
 authors = ["Steven Sojka"]
 license = "Apache-2.0"
 readme = "README.md"
