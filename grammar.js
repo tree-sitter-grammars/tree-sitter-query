@@ -127,7 +127,7 @@ module.exports = grammar({
       seq(
         "(",
         field("name", seq(choice("#", "."), $._immediate_identifier, field("type", $.predicate_type))),
-        field("parameters", $.parameters),
+        optional(field("parameters", $.parameters)),
         ")"
       ),
     predicate_type: _ => token.immediate(choice("?", "!")),
