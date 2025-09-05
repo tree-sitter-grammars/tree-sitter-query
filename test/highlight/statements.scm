@@ -11,16 +11,16 @@
 ;        ^ @type
 
 name: (identifier)
-; <- @property
+; <- @variable.member
 ;   ^ @punctuation.delimiter
 
 (program
   name: (_))
-;        ^ @constant
+;        ^ @character.special
 
 (program
   name: _)
-;       ^ @constant
+;       ^ @character.special
 
 (program
   field: (identifier) @capture
