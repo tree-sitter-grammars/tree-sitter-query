@@ -1,5 +1,5 @@
 [package]
-name = "tree-sitter-query"
+name = "tree-sitter-tsquery"
 description = "TS query grammar for tree-sitter"
 version = "0.6.2"
 authors = ["Steven Sojka"]

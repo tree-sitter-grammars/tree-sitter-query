@@ -16,6 +16,8 @@ jobs:
       NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   crates:
     uses: tree-sitter/workflows/.github/workflows/package-crates.yml@main
+    with:
+      package-name: tree-sitter-tsquery
     secrets:
       CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_TOKEN}}
   pypi:
