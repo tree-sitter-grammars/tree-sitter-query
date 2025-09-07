@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-query",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "TS query grammar for tree-sitter",
   "repository": "https://github.com/tree-sitter-grammars/tree-sitter-query",
   "license": "Apache-2.0",
