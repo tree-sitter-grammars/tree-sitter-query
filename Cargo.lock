@@ -192,7 +192,7 @@ checksum = "c4013970217383f67b18aef68f6fb2e8d409bc5755227092d32efb0422ba24b8"
 
 [[package]]
 name = "tree-sitter-tsquery"
-version = "0.6.2"
+version = "0.7.0"
 dependencies = [
  "cc",
  "tree-sitter",
