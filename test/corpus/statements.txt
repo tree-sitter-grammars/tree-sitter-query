@@ -331,7 +331,7 @@ Predicates
 ================================================================================
 
 ((identifier) @v
-  (#eq? @v "test" local))
+  (#eq? @v "test" local _))
 
 ((identifier) @v
   (.match? @v "test"))
@@ -355,6 +355,7 @@ Predicates
           name: (identifier))
         (string
           (string_content))
+        (identifier)
         (identifier))))
   (grouping
     (named_node
