@@ -255,7 +255,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_node_identifier"
+            "name": "identifier"
           }
         ]
       }
