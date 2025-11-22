@@ -299,26 +299,23 @@
           "value": "]"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "quantifier",
-              "content": {
-                "type": "SYMBOL",
-                "name": "quantifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "capture"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "capture"
+              },
+              {
+                "type": "FIELD",
+                "name": "quantifier",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "quantifier"
+                }
+              }
+            ]
           }
         }
       ]
@@ -359,26 +356,23 @@
           "value": ")"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "quantifier",
-              "content": {
-                "type": "SYMBOL",
-                "name": "quantifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "capture"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "capture"
+              },
+              {
+                "type": "FIELD",
+                "name": "quantifier",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "quantifier"
+                }
+              }
+            ]
           }
         }
       ]
@@ -424,26 +418,23 @@
           "value": ")"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "quantifier",
-              "content": {
-                "type": "SYMBOL",
-                "name": "quantifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "capture"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "capture"
+              },
+              {
+                "type": "FIELD",
+                "name": "quantifier",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "quantifier"
+                }
+              }
+            ]
           }
         }
       ]
@@ -469,26 +460,23 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "quantifier",
-              "content": {
-                "type": "SYMBOL",
-                "name": "quantifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "capture"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "capture"
+              },
+              {
+                "type": "FIELD",
+                "name": "quantifier",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "quantifier"
+                }
+              }
+            ]
           }
         }
       ]
@@ -608,26 +596,23 @@
           "value": ")"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "quantifier",
-              "content": {
-                "type": "SYMBOL",
-                "name": "quantifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "capture"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "capture"
+              },
+              {
+                "type": "FIELD",
+                "name": "quantifier",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "quantifier"
+                }
+              }
+            ]
           }
         }
       ]

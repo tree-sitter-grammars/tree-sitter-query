@@ -207,6 +207,27 @@ Quantifiers (*)
       quantifier: (quantifier))))
 
 ================================================================================
+Quantifiers (complex)
+================================================================================
+
+(program
+  (identifier)? @variable* @spell)
+
+--------------------------------------------------------------------------------
+
+(program
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      quantifier: (quantifier)
+      (capture
+        name: (identifier))
+      quantifier: (quantifier)
+      (capture
+        name: (identifier)))))
+
+================================================================================
 Groups
 ================================================================================
 
