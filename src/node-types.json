@@ -52,7 +52,7 @@
         ]
       },
       "quantifier": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -124,7 +124,7 @@
     "named": true,
     "fields": {
       "quantifier": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -154,7 +154,7 @@
     "named": true,
     "fields": {
       "quantifier": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -198,7 +198,7 @@
         ]
       },
       "quantifier": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -238,7 +238,7 @@
         ]
       },
       "quantifier": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
