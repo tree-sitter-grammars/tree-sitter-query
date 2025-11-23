@@ -65,6 +65,11 @@ module.exports = grammar({
       optional($.string_content),
       token.immediate('"'),
     ),
+    _immediate_string: $ => seq(
+      token.immediate('"'),
+      optional($.string_content),
+      token.immediate('"'),
+    ),
     string_content: $ => repeat1(choice(token.immediate(prec(PREC.STRING, /[^"\\\n]+/)), $.escape_sequence)),
     parameters: $ => repeat1(choice($.capture, $.string, $.identifier)),
     comment: _ => token(prec(PREC.COMMENT, seq(";", /.*/))),
@@ -94,7 +99,11 @@ module.exports = grammar({
       "(",
       choice(
         field("name", $._node_identifier),
-        seq(field("supertype", $.identifier), token.immediate('/'), field("name", $._immediate_identifier)),
+        seq(
+          field("supertype", $.identifier),
+          token.immediate('/'),
+          field("name", choice($._immediate_identifier, alias($._immediate_string, $.string)))
+        ),
       ),
       optional(
         seq(
