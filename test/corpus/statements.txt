@@ -775,6 +775,11 @@ Supertypes
     name: (identifier)
     (supertype/subtype)))
 
+(program
+  (named_node
+    name: (identifier)
+    (supertype/"anonymous subtype")))
+
 --------------------------------------------------------------------------------
 
 (program
@@ -788,7 +793,19 @@ Supertypes
           name: (identifier)))
       (named_node
         supertype: (identifier)
-        name: (identifier)))))
+        name: (identifier))))
+  (named_node
+    name: (identifier)
+    (named_node
+      name: (identifier)
+      (field_definition
+        name: (identifier)
+        (named_node
+          name: (identifier)))
+      (named_node
+        supertype: (identifier)
+        name: (string
+          (string_content))))))
 
 ================================================================================
 Missing keyword
