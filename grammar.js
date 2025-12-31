@@ -13,7 +13,7 @@ const PREC = {
 // Identifiers cannot start with `.`
 const IDENTIFIER = /[a-zA-Z0-9\-_][a-zA-Z0-9.\-_]*/;
 
-module.exports = grammar({
+export default grammar({
   name: "query",
 
   extras: $ => [
