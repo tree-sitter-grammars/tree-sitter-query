@@ -1,0 +1,188 @@
+// Tree-sitter query language grammar - native DSL version
+
+grammar {
+    language: "query",
+    extras: [comment, regexp(r"\s+")],
+    supertypes: [definition],
+}
+
+let PREC = {
+    IMMEDIATE_CHILD: 1,
+    COMMENT: 1,
+    STRING: 2,
+    WILDCARD_NODE: 1,
+}
+
+macro suffix() rule_t {
+    repeat(choice(capture, field(quantifier, quantifier)))
+}
+
+macro immediate_child(expression: rule_t) rule_t {
+    prec_left(PREC.IMMEDIATE_CHILD, seq(expression, ".", expression))
+}
+
+rule program {
+    repeat(definition)
+}
+
+rule definition {
+    choice(
+        named_node,
+        anonymous_node,
+        missing_node,
+        grouping,
+        predicate,
+        list,
+        field_definition,
+    )
+}
+
+rule _group_expression {
+    choice(
+        definition,
+        immediate_child(_group_expression),
+    )
+}
+
+rule _named_node_expression {
+    choice(
+        definition,
+        negated_field,
+        immediate_child(_named_node_expression),
+    )
+}
+
+rule escape_sequence {
+    token_immediate(seq("\\", regexp(r".")))
+}
+
+rule quantifier {
+    choice("*", "+", "?")
+}
+
+rule identifier {
+    regexp(r"[a-zA-Z0-9\-_][a-zA-Z0-9.\-_]*")
+}
+
+rule _immediate_identifier {
+    alias(token_immediate(regexp(r"[a-zA-Z0-9\-_][a-zA-Z0-9.\-_]*")), identifier)
+}
+
+rule _node_identifier {
+    choice(identifier, prec(PREC.WILDCARD_NODE, "_"))
+}
+
+rule capture {
+    seq("@", field(name, _immediate_identifier))
+}
+
+rule string {
+    seq("\"", optional(string_content), token_immediate("\""))
+}
+
+rule _immediate_string {
+    seq(token_immediate("\""), optional(string_content), token_immediate("\""))
+}
+
+rule string_content {
+    repeat1(choice(
+        token_immediate(prec(PREC.STRING, regexp(r#"[^"\\\n]+"#))),
+        escape_sequence,
+    ))
+}
+
+rule parameters {
+    repeat1(choice(capture, string, identifier))
+}
+
+rule comment {
+    token(prec(PREC.COMMENT, seq(";", regexp(r".*"))))
+}
+
+rule list {
+    seq("[", repeat1(definition), "]", suffix())
+}
+
+rule grouping {
+    seq(
+        "(",
+        repeat1(seq(_group_expression, optional("."))),
+        ")",
+        suffix(),
+    )
+}
+
+rule missing_node {
+    seq(
+        "(",
+        "MISSING",
+        optional(field(name, choice(identifier, string))),
+        ")",
+        suffix(),
+    )
+}
+
+rule anonymous_node {
+    seq(
+        field(name, choice(string, "_")),
+        suffix(),
+    )
+}
+
+rule named_node {
+    seq(
+        "(",
+        choice(
+            field(name, _node_identifier),
+            seq(
+                field(supertype, identifier),
+                token_immediate("/"),
+                field(name, choice(
+                    _immediate_identifier,
+                    alias(_immediate_string, string),
+                )),
+            ),
+        ),
+        optional(seq(
+            optional("."),
+            choice(
+                repeat1(_named_node_expression),
+                seq(
+                    repeat(_named_node_expression),
+                    seq(_named_node_expression, "."),
+                ),
+            ),
+        )),
+        ")",
+        suffix(),
+    )
+}
+
+rule _field_name {
+    seq(identifier, ":")
+}
+
+rule field_definition {
+    seq(field(name, _field_name), definition)
+}
+
+rule negated_field {
+    seq("!", identifier)
+}
+
+rule predicate {
+    seq(
+        "(",
+        field(name, seq(
+            choice("#", "."),
+            _immediate_identifier,
+            field(type, predicate_type),
+        )),
+        optional(field(parameters, parameters)),
+        ")",
+    )
+}
+
+rule predicate_type {
+    token_immediate(choice("?", "!"))
+}
