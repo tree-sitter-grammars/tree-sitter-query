@@ -10,7 +10,7 @@
 //!     name: (identifier)))
 //! "#;
 //! let mut parser = tree_sitter::Parser::new();
-//! let language = tree_sitter_query::LANGUAGE;
+//! let language = tree_sitter_tsquery::LANGUAGE;
 //! parser
 //!     .set_language(&language.into())
 //!     .expect("Error loading Query parser");
